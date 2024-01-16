@@ -3,14 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Concours de dessin</title>
+        <title>HueRift</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="icon" type="image/x-icon" href="assets/images/logos/favicon-32.png">
+        <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
+        <?php include 'includes/header.php'; ?>
        <h1>Concours de dessin</h1>
         
-        <script src="" async defer></script>
+        <script src="assets/js/index.js" async defer></script>
     </body>
 </html>
