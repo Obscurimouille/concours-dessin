@@ -1,0 +1,19 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "set APP_ENV=development&& vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "vue": "^3.3.8"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^4.4.1",
+        "@vue/compiler-sfc": "^3.3.8",
+        "rollup": "^4.9.5",
+        "sass": "^1.69.7",
+        "vite": "^5.0.0",
+        "vite-plugin-live-reload": "^3.0.2"
+    }
+}

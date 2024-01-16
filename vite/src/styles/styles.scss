@@ -1,0 +1,54 @@
+@import "partials/colors.scss";
+@import 'header';
+
+:root {
+    font-family: 'Poppins', ui-sans-serif;
+
+    --font-scale: 1.333;
+    --p: 1rem;
+    --h5: calc(var(--p) * var(--font-scale));
+    --h4: calc(var(--h5) * var(--font-scale));
+    --h3: calc(var(--h4) * var(--font-scale));
+    --h2: calc(var(--h3) * var(--font-scale));
+    --h1: calc(var(--h2) * var(--font-scale));
+    --small: calc(var(--p) / var(--font-scale));
+    --margin-lg: 0 12%;
+    --margin-md: 0 6%;
+    --border1: 1rem;
+    --border05: 0.5rem;
+}
+
+p, small, a, li, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-padding-top: 3em;
+    font-family: 'Poppins', ui-sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: $background-color;
+}
+
+a {
+    font-size: inherit;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+p {
+    font-size: var(--p);
+}
+
+button {
+    font-size: var(--p);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
