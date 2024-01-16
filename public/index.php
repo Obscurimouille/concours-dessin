@@ -20,10 +20,10 @@ require_once __DIR__ . '/helpers.php';
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet">
         <?= vite('main.js') ?>
     </head>
-    <body>
+    <body class="vue-app">
         <?php include 'includes/header.php'; ?>
-       <h1>Concours de dessin</h1>
-
-        <!-- <script src="assets/js/index.js" async defer></script> -->
+        <main>
+            <h1 data-i18n="title"></h1>
+        </main>
     </body>
 </html>

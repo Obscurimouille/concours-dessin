@@ -7,6 +7,7 @@
     </div>
 
     <div class="menu">
-        <a class="menu-item">Connexion</a>
+        <language-switcher></language-switcher>
+        <a class="menu-item" data-i18n="login"></a>
     </div>
 </div>

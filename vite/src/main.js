@@ -7,6 +7,9 @@ import "./styles";
 // Vue
 import { createApp } from "vue";
 
+// i18n
+import i18n from "./config/i18n";
+
 // If you are build a SPA with a single <div id="app"></div> entry you would:
 // import App from './App.vue'
 // createApp(App).mount('#app')
@@ -35,5 +38,7 @@ for (const el of document.getElementsByClassName("vue-app")) {
     createApp({
         template: el.innerHTML,
         components,
-    }).mount(el);
+    })
+        .use(i18n)
+        .mount(el);
 }
