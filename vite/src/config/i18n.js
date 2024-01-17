@@ -1,12 +1,13 @@
-import i18n from "i18next";
-import HttpBackend from "i18next-http-backend";
-import Cookies from 'js-cookie';
+import { createI18n } from "vue-i18n";
+import Cookies from "js-cookie";
+import en from "../locales/en.json";
+import fr from "../locales/fr.json";
 
 const languageCodes = ["en", "fr"];
 let languageCode = "en";
 
 // Get the language code from the cookie
-const languagePreference = Cookies.get('lang');
+const languagePreference = Cookies.get("locale");
 if (languagePreference && languageCodes.includes(languagePreference)) {
     languageCode = languagePreference;
 }
@@ -16,37 +17,20 @@ else {
     const userLanguage = navigator.language || navigator.userLanguage;
 
     if (userLanguage) {
-        const languageParts = userLanguage.split('-');
+        const languageParts = userLanguage.split("-");
         const code = languageParts[0];
         if (languageCodes.includes(code)) languageCode = code;
     }
 }
 
-i18n.use(HttpBackend)
-    .init({
-        fallbackLng: languageCode,
-        debug: process.env.NODE_ENV == "development",
-        interpolation: {
-            escapeValue: false,
-        },
-        backend: {
-            loadPath:
-                process.env.NODE_ENV == "production"
-                    ? "/dist/locales/{{lng}}.json"
-                    : import.meta.env.VITE_SERVER_URL + "/locales/{{lng}}.json",
-        },
-    })
-    .then(() => {
-        i18n.updateDOM();
-    });
 
-/**
- * Update DOM with the current translation
- */
-i18n.updateDOM = () => {
-    document.body.querySelectorAll("[data-i18n]").forEach((element) => {
-        element.textContent = i18n.t(element.getAttribute("data-i18n"));
-    });
-};
+const i18n = createI18n({
+    locale: languageCode,
+    fallbackLocale: "en",
+    messages: {
+        en,
+        fr,
+    },
+});
 
 export default i18n;

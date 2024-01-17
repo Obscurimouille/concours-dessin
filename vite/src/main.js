@@ -6,6 +6,7 @@ import "./styles";
 
 // Vue
 import { createApp } from "vue";
+import router from './router';
 
 // i18n
 import i18n from "./config/i18n";
@@ -21,7 +22,7 @@ import i18n from "./config/i18n";
 
 // Example of how to import **all** components
 const components = {};
-const modules = import.meta.glob("./components/*.vue", { eager: true });
+const modules = import.meta.glob("./views/*.vue", { eager: true });
 for (const path in modules) {
     components[modules[path].default.__name] = modules[path].default;
 }
@@ -40,5 +41,6 @@ for (const el of document.getElementsByClassName("vue-app")) {
         components,
     })
         .use(i18n)
+        .use(router)
         .mount(el);
 }

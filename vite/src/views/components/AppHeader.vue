@@ -2,25 +2,24 @@
     <div class="header">
         <div class="logo">
             <img class="app-logo" src="/images/logos/favicon-32.png">
-            <a href="/">
+            <router-link to="/">
                 <h4 class="app-name">Zaiten</h4>
-            </a>
+            </router-link>
         </div>
 
         <div class="menu">
             <language-dropdown></language-dropdown>
-            <a class="menu-item" data-i18n="login"></a>
+            <router-link class="menu-item" to="/login">{{ $t('login') }}</router-link>
         </div>
     </div>
 </template>
 
 <script setup>
     import LanguageDropdown from "./LanguageDropdown.vue";
-    // Component logics
 </script>
 
 <style lang="scss" scoped>
-    @import "../styles/partials/colors.scss";
+    @import "@/styles/partials/colors.scss";
 
     .header {
         padding: 0.5rem 12%;
@@ -28,6 +27,7 @@
         flex-direction: row;
         justify-content: space-between;
         width: 100%;
+        height: 60px;
         position: fixed;
         z-index: 9999;
         background-color: $background-color;

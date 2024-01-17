@@ -1,7 +1,7 @@
 <template>
     <div>
         <button class="dropdown-button" @click="toggle()">
-            <span data-i18n="language"></span>
+            <span>{{ $t('language') }}</span>
             <img class="icon" src="/images/icons/expand-down_200.svg">
         </button>
         <div class="dropdown-content">
@@ -12,13 +12,12 @@
 </template>
 
 <script setup>
-    import i18n from "i18next";
+    import i18n from "@/config/i18n";
     import Cookies from 'js-cookie';
 
     const changeLanguage = async (language) => {
-        await i18n.changeLanguage(language);
-        Cookies.set("lang", language);
-        i18n.updateDOM();
+        i18n.global.locale = language;
+        Cookies.set("locale", language);
     };
 
     const toggle = () => {
@@ -40,7 +39,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../styles/partials/colors.scss";
+    @import "@/styles/partials/colors.scss";
 
     .dropdown-button {
         position: relative;
