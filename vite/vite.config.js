@@ -12,7 +12,7 @@
 // (this happens because our Vite code is outside the server public access,
 // if it were, we could use https://vitejs.dev/config/server-options.html#server-origin)
 
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 import { defineConfig, splitVendorChunkPlugin } from "vite";
@@ -20,10 +20,13 @@ import vue from "@vitejs/plugin-vue";
 import liveReload from "vite-plugin-live-reload";
 import path from "node:path";
 
+const isProduction = process.env.APP_ENV != "development";
+const viteUrl = "http://localhost:" + process.env.VITE_PORT;
+
 // https://vitejs.dev/config/
 export default defineConfig({
     define: {
-        'import.meta.env.VITE_SERVER_URL': JSON.stringify('http://localhost:' + process.env.VITE_PORT),
+        "import.meta.env.VITE_SERVER_URL": JSON.stringify(viteUrl),
     },
     plugins: [
         vue(),
@@ -39,8 +42,8 @@ export default defineConfig({
 
     // config
     root: "src",
-    base: process.env.APP_ENV === "development" ? "/" : "/dist/",
-    publicDir: 'assets',
+    base: isProduction ? "/dist/" : "/",
+    publicDir: "assets",
 
     build: {
         // output dir for production build
@@ -61,6 +64,7 @@ export default defineConfig({
         // change freely, but update on PHP to match the same port
         // tip: choose a different port per project to run them at the same time
         strictPort: true,
+        origin: viteUrl,
         port: process.env.VITE_PORT,
     },
 

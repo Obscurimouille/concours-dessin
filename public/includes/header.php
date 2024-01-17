@@ -7,7 +7,7 @@
     </div>
 
     <div class="menu">
-        <language-switcher></language-switcher>
+        <language-dropdown></language-dropdown>
         <a class="menu-item" data-i18n="login"></a>
     </div>
 </div>
