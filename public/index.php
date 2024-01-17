@@ -21,7 +21,7 @@ require_once __DIR__ . '/helpers.php';
         <?= vite('main.js') ?>
     </head>
     <body class="vue-app">
-        <?php include 'includes/header.php'; ?>
+        <app-header></app-header>
         <main>
             <h1 data-i18n="title"></h1>
         </main>

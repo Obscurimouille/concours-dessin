@@ -1,9 +1,30 @@
 import i18n from "i18next";
 import HttpBackend from "i18next-http-backend";
+import Cookies from 'js-cookie';
+
+const languageCodes = ["en", "fr"];
+let languageCode = "en";
+
+// Get the language code from the cookie
+const languagePreference = Cookies.get('lang');
+if (languagePreference && languageCodes.includes(languagePreference)) {
+    languageCode = languagePreference;
+}
+
+// Get the language code from the user's browser
+else {
+    const userLanguage = navigator.language || navigator.userLanguage;
+
+    if (userLanguage) {
+        const languageParts = userLanguage.split('-');
+        const code = languageParts[0];
+        if (languageCodes.includes(code)) languageCode = code;
+    }
+}
 
 i18n.use(HttpBackend)
     .init({
-        fallbackLng: "en",
+        fallbackLng: languageCode,
         debug: process.env.NODE_ENV == "development",
         interpolation: {
             escapeValue: false,

@@ -2,7 +2,7 @@
     <div>
         <button class="dropdown-button" @click="toggle()">
             <span data-i18n="language"></span>
-            <img class="icon" src="../assets/images/icons/expand-down_200.svg">
+            <img class="icon" src="/images/icons/expand-down_200.svg">
         </button>
         <div class="dropdown-content">
             <button class="dropdown-item" @click="changeLanguage('en')">English</button>
@@ -12,11 +12,12 @@
 </template>
 
 <script setup>
-    // import "../styles/partials/colors.scss";
     import i18n from "i18next";
+    import Cookies from 'js-cookie';
 
     const changeLanguage = async (language) => {
         await i18n.changeLanguage(language);
+        Cookies.set("lang", language);
         i18n.updateDOM();
     };
 
