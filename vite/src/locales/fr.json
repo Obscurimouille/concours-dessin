@@ -1,5 +1,11 @@
 {
     "language": "Français",
     "title": "Concours de dessin",
-    "login": "Connection"
+    "login": "S'identifier",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "loginToYourAccount": "Connectez-vous à votre compte",
+    "forgotPassword": "Mot de passe oublié?",
+    "orSeparator": "OU",
+    "newToTheSite": "Nouveau sur Zaiten ? Faites une demande de compte auprès de votre club."
 }

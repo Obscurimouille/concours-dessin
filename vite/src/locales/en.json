@@ -1,5 +1,11 @@
 {
     "language": "English",
     "title": "Drawing contest",
-    "login": "Login"
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "loginToYourAccount": "Login to your account",
+    "forgotPassword": "Forgot password?",
+    "orSeparator": "OR",
+    "newToTheSite": "New to the site? Request an account from your club"
 }
