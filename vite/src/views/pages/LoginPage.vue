@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-    import AppHeader from "@/views/components/AppHeader.vue";
+    // Component setup script
 </script>
 
 <style lang="scss" scoped>
