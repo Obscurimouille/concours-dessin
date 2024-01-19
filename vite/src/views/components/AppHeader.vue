@@ -8,6 +8,8 @@
         </div>
 
         <div class="menu">
+            <a class="menu-item" href="/club/12345">Club</a>
+
             <language-dropdown></language-dropdown>
             <router-link class="menu-item" to="/login">{{ $t('login') }}</router-link>
         </div>
