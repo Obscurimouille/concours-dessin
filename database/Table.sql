@@ -1,25 +1,20 @@
 DROP TABLE IF EXISTS Evaluation;
 DROP TABLE IF EXISTS ParticipationEvaluateur;
-DROP TABLE IF EXISTS ParticipationCompétiteur;
+DROP TABLE IF EXISTS ParticipationCompetiteur;
 DROP TABLE IF EXISTS ParticipationClub;
 DROP TABLE IF EXISTS Dirige;    
 DROP TABLE IF EXISTS Dessin;
+DROP TABLE IF EXISTS President;
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS Club;
 DROP TABLE IF EXISTS Concours;
 DROP TABLE IF EXISTS Directeur;
 DROP TABLE IF EXISTS Administrateur;
-DROP TABLE IF EXISTS Compétiteur;
+DROP TABLE IF EXISTS Competiteur;
 DROP TABLE IF EXISTS Evaluateur;
-DROP TABLE IF EXISTS Président;
 
 
 
-
-CREATE TABLE Président (
-    numPrésident INT PRIMARY KEY,
-    prime DECIMAL(10, 2)
-);
 
 CREATE TABLE Evaluateur (
     numEvaluateur INT PRIMARY KEY,
@@ -27,7 +22,7 @@ CREATE TABLE Evaluateur (
 );
 
 
-CREATE TABLE Compétiteur (
+CREATE TABLE Competiteur (
     numCompetiteur INT PRIMARY KEY,
     datePremParticipation DATE
 );
@@ -48,7 +43,7 @@ CREATE TABLE Concours (
     theme VARCHAR(255),
     dateDebut DATE,
     dateFin DATE,
-    etat ENUM('pas commencé', 'en cours', 'attente', 'résultat', 'évalué')
+    etat ENUM('pas commencer', 'en cours', 'attente', 'résultat', 'évalué')
 );
 
 
@@ -77,6 +72,13 @@ CREATE TABLE Utilisateur (
     FOREIGN KEY (numClub) REFERENCES Club(numClub)
 );
 
+CREATE TABLE President (
+    numPresident INTEGER NOT NULL,
+    prime VARCHAR(50) NOT NULL,
+    PRIMARY KEY (numPresident),
+    FOREIGN KEY (numPresident) REFERENCES Utilisateur(numUtilisateur)
+);
+
 CREATE TABLE Dessin (
     numDessin INT PRIMARY KEY,
     numCompetiteur INT,
@@ -84,7 +86,7 @@ CREATE TABLE Dessin (
     classement INT,
     dateRemise DATE,
     leDessin BLOB,
-    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur)
+    FOREIGN KEY (numCompetiteur) REFERENCES Competiteur(numCompetiteur)
 );
 
 CREATE TABLE Dirige (
@@ -103,11 +105,11 @@ CREATE TABLE ParticipationClub (
     FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
 );
 
-CREATE TABLE ParticipationCompétiteur (
+CREATE TABLE ParticipationCompetiteur (
     numCompetiteur INT,
     numConcours INT,
     PRIMARY KEY (numCompetiteur, numConcours),
-    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur),
+    FOREIGN KEY (numCompetiteur) REFERENCES Competiteur(numCompetiteur),
     FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
 );
 
@@ -115,7 +117,7 @@ CREATE TABLE ParticipationEvaluateur (
     numCompetiteur INT,
     numEvaluateur INT,
     PRIMARY KEY (numCompetiteur, numEvaluateur),
-    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur),
+    FOREIGN KEY (numCompetiteur) REFERENCES Competiteur(numCompetiteur),
     FOREIGN KEY (numEvaluateur) REFERENCES Evaluateur(numEvaluateur)
 );
 
