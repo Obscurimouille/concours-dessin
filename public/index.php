@@ -18,12 +18,10 @@ require_once __DIR__ . '/helpers.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="<?= assetUrl('images/logos/favicon-32.png') ?>">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
         <?= vite('main.js') ?>
     </head>
-    <body>
-        <?php include 'includes/header.php'; ?>
-       <h1>Concours de dessin</h1>
-
-        <!-- <script src="assets/js/index.js" async defer></script> -->
+    <body class="vue-app">
+        <router-view></router-view>
     </body>
 </html>

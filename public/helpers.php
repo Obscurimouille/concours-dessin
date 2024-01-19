@@ -1,6 +1,6 @@
 <?php
 // Helpers here serve as example. Change to suit your needs.
-const VITE_HOST = 'http://localhost:5133';
+const VITE_HOST = 'http://localhost:5123';
 
 // For a real-world example check here:
 // https://github.com/wp-bond/bond/blob/master/src/Tooling/Vite.php
