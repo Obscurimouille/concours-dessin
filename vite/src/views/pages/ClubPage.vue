@@ -64,17 +64,17 @@
             <form class="add-user-form" type="POST">
                 <div class="form-input-group">
                     <label for="firstname">{{ $t('firstName') }}</label>
-                    <input type="text" name="firstname" />
+                    <input type="text" name="firstname" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="lastname">{{ $t('lastName') }}</label>
-                    <input type="text" name="lastname" />
+                    <input type="text" name="lastname" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="address">{{ $t('address') }}</label>
-                    <input type="text" name="address" />
+                    <input type="text" name="address" required/>
                 </div>
 
                 <div class="button-list">
@@ -213,19 +213,9 @@
 
             label {
                 font-weight: 700;
-                font-size: 0.875rem;
-                line-height: 1;
             }
 
             input {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                height: 2.5rem;
-                width: 100%;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 0.4rem;
-                padding: .5rem .75rem;
-
                 &:disabled {
                     padding: .5rem 0;
                     border: none;
@@ -298,20 +288,7 @@
             flex-direction: column;
             gap: 8px;
 
-            label {
-                font-size: 0.875rem;
-                line-height: 1;
-            }
-
             input {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                height: 2.5rem;
-                width: 100%;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 0.4rem;
-                padding: .5rem .75rem;
-
                 &:disabled {
                     padding: .5rem 0;
                     border: none;

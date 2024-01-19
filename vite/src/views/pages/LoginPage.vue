@@ -10,12 +10,12 @@
             <form class="form" type="POST">
                 <div class="form-input-group">
                     <label for="username">{{ $t('username') }}</label>
-                    <input type="text" name="username" />
+                    <input type="text" name="username" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="password">{{ $t('password') }}</label>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" required/>
                     <a class="forgot-password">
                         <small>{{ $t('forgotPassword') }}</small>
                     </a>
@@ -97,22 +97,6 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-
-        label {
-            font-size: 0.875rem;
-            line-height: 1;
-
-        }
-
-        input {
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            height: 2.5rem;
-            width: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 0.4rem;
-            padding: .5rem .75rem;
-        }
     }
 
     .forgot-password {
