@@ -12,6 +12,23 @@ DROP TABLE IF EXISTS Administrateur;
 
 
 
+CREATE TABLE Président (
+    numPrésident INT PRIMARY KEY,
+    prime DECIMAL(10, 2)
+);
+
+CREATE TABLE Evaluateur (
+    numEvaluateur INT PRIMARY KEY,
+    specialite VARCHAR(255)
+);
+
+
+
+CREATE TABLE Compétiteur (
+    numCompetiteur INT PRIMARY KEY,
+    datePremParticipation DATE
+);
+
 CREATE TABLE Administrateur (
     numAdministrateur INT PRIMARY KEY,
     dateDebut DATE
@@ -22,38 +39,40 @@ CREATE TABLE Directeur (
     dateDebut DATE
 );
 
+
 CREATE TABLE Concours (
     numConcours INT PRIMARY KEY,
     theme VARCHAR(255),
     dateDebut DATE,
     dateFin DATE,
-    etat ENUM('pas commencer', 'en cours', 'attente', 'résultat', 'évalué')
+    etat ENUM('pas commencé', 'en cours', 'attente', 'résultat', 'évalué')
 );
 
 
-
-
-
-CREATE TABLE President (
-    numPresident INT PRIMARY KEY,
-    prime DECIMAL(10, 2)
+CREATE TABLE Club (
+    numClub INT PRIMARY KEY,
+    numDirecteur INT,
+    nomClub VARCHAR(255),
+    adresse VARCHAR(255),
+    numTelephone VARCHAR(20),
+    nombreAdherents INT,
+    ville VARCHAR(255),
+    departement VARCHAR(255),
+    region VARCHAR(255),
+    FOREIGN KEY (numDirecteur) REFERENCES Directeur(numDirecteur)
 );
 
-CREATE TABLE Evaluateur (
-    numEvaluateur INT PRIMARY KEY,
-    numConcours INT,
-    specialite VARCHAR(255),
-    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
+CREATE TABLE Utilisateur (
+    numUtilisateur INT PRIMARY KEY,
+    numClub INT,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    adresse VARCHAR(255),
+    login VARCHAR(255),
+    motDePasse VARCHAR(255),
+    dateDebut DATE,
+    FOREIGN KEY (numClub) REFERENCES Club(numClub)
 );
-
-
-CREATE TABLE Competiteur (
-    numCompetiteur INT PRIMARY KEY,
-    numConcours INT,
-    datePremParticipation DATE,
-    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
-);
-
 
 CREATE TABLE Dessin (
     numDessin INT PRIMARY KEY,
@@ -62,37 +81,7 @@ CREATE TABLE Dessin (
     classement INT,
     dateRemise DATE,
     leDessin BLOB,
-    FOREIGN KEY (numCompetiteur) REFERENCES Competiteur(numCompetiteur)
-);
-
-
-CREATE TABLE Club (
-    numClub INT,
-    numDirecteur INT,
-    numConcours INT,
-    nomClub VARCHAR(255),
-    adresse VARCHAR(255),
-    numTelephone VARCHAR(20),
-    nombreAdherents INT,
-    ville VARCHAR(255),
-    departement VARCHAR(255),
-    region VARCHAR(255),
-    PRIMARY KEY (numClub),
-    FOREIGN KEY (numDirecteur) REFERENCES Directeur(numDirecteur),
-    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
-);
-
-CREATE TABLE Utilisateur (
-    numUtilisateur INT ,
-    numClub INT,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    adresse VARCHAR(255),
-    login VARCHAR(255),
-    motDePasse VARCHAR(255),
-    dateDebut DATE,
-    PRIMARY KEY (numUtilisateur),
-    FOREIGN KEY (numClub) REFERENCES Club(numClub)
+    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur)
 );
 
 CREATE TABLE Dirige (
@@ -103,6 +92,29 @@ CREATE TABLE Dirige (
     FOREIGN KEY (numDirecteur) REFERENCES Directeur(numDirecteur)
 );
 
+CREATE TABLE ParticipationClub (
+    numClub INT,
+    numConcours INT,
+    PRIMARY KEY (numClub, numConcours),
+    FOREIGN KEY (numClub) REFERENCES Club(numClub),
+    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
+);
+
+CREATE TABLE ParticipationCompétiteur (
+    numCompetiteur INT,
+    numConcours INT,
+    PRIMARY KEY (numCompetiteur, numConcours),
+    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur),
+    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours)
+);
+
+CREATE TABLE ParticipationEvaluateur (
+    numCompetiteur INT,
+    numEvaluateur INT,
+    PRIMARY KEY (numCompetiteur, numEvaluateur),
+    FOREIGN KEY (numCompetiteur) REFERENCES Compétiteur(numCompetiteur),
+    FOREIGN KEY (numEvaluateur) REFERENCES Evaluateur(numEvaluateur)
+);
 
 CREATE TABLE Evaluation (
     numEvaluateur1 INT,
