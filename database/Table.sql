@@ -1,14 +1,18 @@
 DROP TABLE IF EXISTS Evaluation;
-DROP TABLE IF EXISTS Dirige;
+DROP TABLE IF EXISTS ParticipationEvaluateur;
+DROP TABLE IF EXISTS ParticipationCompétiteur;
+DROP TABLE IF EXISTS ParticipationClub;
+DROP TABLE IF EXISTS Dirige;    
+DROP TABLE IF EXISTS Dessin;
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS Club;
-DROP TABLE IF EXISTS Dessin;
-DROP TABLE IF EXISTS Competiteur;
-DROP TABLE IF EXISTS Evaluateur;
-DROP TABLE IF EXISTS President;
 DROP TABLE IF EXISTS Concours;
 DROP TABLE IF EXISTS Directeur;
 DROP TABLE IF EXISTS Administrateur;
+DROP TABLE IF EXISTS Compétiteur;
+DROP TABLE IF EXISTS Evaluateur;
+DROP TABLE IF EXISTS Président;
+
 
 
 
@@ -21,7 +25,6 @@ CREATE TABLE Evaluateur (
     numEvaluateur INT PRIMARY KEY,
     specialite VARCHAR(255)
 );
-
 
 
 CREATE TABLE Compétiteur (
