@@ -5,11 +5,11 @@ Club(<u>numClub</u>, numDirecteur*, nomClub, adresse, numTéléphone, nombre Adh
 
 Président (<u>numPresident</u>*, prime)
 
-Evaluateur (<u>numEvaluateur*</u>, numConcours*?, specialite)
+Evaluateur (<u>numEvaluateur*</u>, specialite)
 
 Evaluation(<u>numEvaluateur1*</u>, <u>numEvaluateur2*</u>, numDessin*, dateEvaluation, note, commentaire )
 
-Compétiteur (<u>numCompetiteur*</u>, numConcours*, datePremParticipation)
+Compétiteur (<u>numCompetiteur*</u>, datePremParticipation)
 
 Administrateur (<u>numAdministrateur*</u>, dateDébut)
 
