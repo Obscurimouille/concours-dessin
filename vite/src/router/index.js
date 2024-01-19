@@ -4,6 +4,7 @@ import LandingPage from "../views/pages/LandingPage.vue";
 import LoginPage from "../views/pages/LoginPage.vue";
 import ClubPage from "../views/pages/ClubPage.vue";
 import NotFoundPage from "../views/pages/NotFoundPage.vue";
+import AdminDashboardPage from "../views/pages/AdminDashboardPage.vue";
 
 const routes = [
     { path: "/", component: LandingPage },
@@ -25,6 +26,10 @@ const routes = [
                     next({ name: "NotFound" });
                 });
         },
+    },
+    {
+        path: "/home",
+        component: AdminDashboardPage
     },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFoundPage },
 ];
