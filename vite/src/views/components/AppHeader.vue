@@ -31,7 +31,7 @@
         width: 100%;
         height: 60px;
         position: fixed;
-        z-index: 9999;
+        z-index: 999;
         background-color: $background-color;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }

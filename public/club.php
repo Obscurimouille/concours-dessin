@@ -2,14 +2,49 @@
 
 header('Content-Type: application/json');
 
+function generateMembers($count) {
+    $members = [];
+
+    for ($i = 0; $i < $count; $i++) {
+        $member = [
+            'firstname' => generateRandomName(),
+            'lastname' => generateRandomName(),
+            'address' => generateRandomAddress(),
+            'username' => generateRandomUsername(),
+            'entryDate' => generateRandomDate(),
+        ];
+
+        $members[] = $member;
+    }
+
+    return $members;
+}
+
+function generateRandomName() {
+    $names = ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Henry'];
+    return $names[array_rand($names)];
+}
+
+function generateRandomAddress() {
+    return rand(100, 999) . ' Example Street';
+}
+
+function generateRandomUsername() {
+    return strtolower(generateRandomName()) . '.' . generateRandomName();
+}
+
+function generateRandomDate() {
+    return date('Y-m-d', rand(strtotime('2010-01-01'), strtotime('2022-12-31')));
+}
+
 function getClubData($clubId) {
     if ($clubId === '12345') {
         // If it is, return data for that club
         $clubData = [
             'id' => $clubId,
             'name' => 'Club Example',
-            'members' => 100,
-            'adress' => '123 Example Street',
+            'members' => generateMembers(100),
+            'address' => '123 Example Street',
             'city' => 'Example City',
             'department' => 'Example Department',
             'region' => 'Example Region',
