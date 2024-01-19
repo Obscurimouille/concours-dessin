@@ -11,13 +11,24 @@
             <a class="menu-item" href="/club/12345">Club</a>
 
             <language-dropdown></language-dropdown>
-            <router-link class="menu-item" to="/login">{{ $t('login') }}</router-link>
+            <router-link v-if="!isConnected" class="menu-item" to="/login">{{ $t('login') }}</router-link>
+            <router-link v-if="isConnected" class="menu-item" to="/login">{{ $t('logout') }}</router-link>
         </div>
     </div>
 </template>
 
 <script setup>
     import LanguageDropdown from "./LanguageDropdown.vue";
+</script>
+
+<script>
+    export default {
+        data() {
+            return {
+                isConnected: true,
+            };
+        },
+    };
 </script>
 
 <style lang="scss" scoped>

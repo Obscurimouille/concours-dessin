@@ -2,6 +2,7 @@
     "language": "English",
     "title": "Drawing contest",
     "login": "Login",
+    "logout": "Logout",
     "username": "Username",
     "password": "Password",
     "address": "Address",
