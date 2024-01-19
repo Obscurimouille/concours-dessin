@@ -4,16 +4,14 @@ DROP TABLE IF EXISTS ParticipationCompetiteur;
 DROP TABLE IF EXISTS ParticipationClub;
 DROP TABLE IF EXISTS Dirige;    
 DROP TABLE IF EXISTS Dessin;
-DROP TABLE IF EXISTS President;
 DROP TABLE IF EXISTS Utilisateur;
+DROP TABLE IF EXISTS President;
+DROP TABLE IF EXISTS Administrateur;
 DROP TABLE IF EXISTS Club;
 DROP TABLE IF EXISTS Concours;
 DROP TABLE IF EXISTS Directeur;
-DROP TABLE IF EXISTS Administrateur;
 DROP TABLE IF EXISTS Competiteur;
 DROP TABLE IF EXISTS Evaluateur;
-
-
 
 
 CREATE TABLE Evaluateur (
@@ -27,10 +25,7 @@ CREATE TABLE Competiteur (
     datePremParticipation DATE
 );
 
-CREATE TABLE Administrateur (
-    numAdministrateur INT PRIMARY KEY,
-    dateDebut DATE
-);
+
 
 CREATE TABLE Directeur (
     numDirecteur INT PRIMARY KEY,
@@ -70,6 +65,13 @@ CREATE TABLE Utilisateur (
     motDePasse VARCHAR(255),
     dateDebut DATE,
     FOREIGN KEY (numClub) REFERENCES Club(numClub)
+);
+
+CREATE TABLE Administrateur (
+    numAdministrateur INT ,
+    dateDebut DATE,
+    PRIMARY KEY (numAdministrateur),
+    FOREIGN KEY (numAdministrateur) REFERENCES Utilisateur(numUtilisateur)
 );
 
 CREATE TABLE President (
