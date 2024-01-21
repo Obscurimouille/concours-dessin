@@ -1,7 +1,7 @@
 <template>
     <app-header></app-header>
     <main>
-        <h1>Landing Page</h1>
+        <h2>Landing Page</h2>
     </main>
 </template>
 

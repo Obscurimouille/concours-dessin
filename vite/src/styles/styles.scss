@@ -1,4 +1,5 @@
 @import "partials/colors.scss";
+@import "partials/breakpoints.scss";
 @import "header";
 
 :root {
@@ -12,10 +13,12 @@
     --h2: calc(var(--h3) * var(--font-scale));
     --h1: calc(var(--h2) * var(--font-scale));
     --small: calc(var(--p) / var(--font-scale));
-    --margin-lg: 0 12%;
-    --margin-md: 0 6%;
-    --border1: 1rem;
-    --border05: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-padding-top: 3em;
+    font-family: "Poppins", ui-sans-serif;
 }
 
 p,
@@ -31,10 +34,44 @@ h6 {
     margin: 0;
 }
 
-* {
-    box-sizing: border-box;
-    scroll-padding-top: 3em;
-    font-family: "Poppins", ui-sans-serif;
+h1 {
+    font-size: var(--h1);
+    letter-spacing: 0;
+    font-weight: 700;
+
+}
+
+h2 {
+    font-size: var(--h2);
+    letter-spacing: 0;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: var(--h3);
+    font-weight: 700;
+}
+
+h4 {
+    font-size: var(--h4);
+    font-weight: 700;
+}
+
+h5 {
+    font-size: var(--h5);
+    font-weight: 400;
+}
+
+a {
+    font-size: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+p {
+    font-size: var(--p);
+    letter-spacing: normal;
+    text-align: left;
 }
 
 body {
@@ -73,6 +110,10 @@ button {
     align-items: center;
     justify-content: center;
     padding: 0;
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 
 hr {
@@ -82,6 +123,35 @@ hr {
     color: rgba(0, 0, 0, 0.2);
     overflow: visible;
     text-align: center;
+}
+
+label {
+    font-size: 0.875rem;
+    line-height: 1;
+}
+
+textarea {
+    font-size: 0.875rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.4rem;
+    padding: .5rem .75rem;
+}
+
+select {
+    font-size: 0.875rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.4rem;
+    padding: .5rem .75rem;
+}
+
+input {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    height: 2.5rem;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.4rem;
+    padding: .5rem .75rem;
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -104,4 +174,16 @@ hr {
     background-color: $primary-color;
     border-radius: 10px;
     background-clip: content-box;
+}
+
+@media screen and (max-width: $view-lg) {
+    :root {
+        --p: 0.8rem;
+    }
+}
+
+@media screen and (max-width: $view-md) {
+    :root {
+        --p: 0.7rem;
+    }
 }

@@ -4,6 +4,7 @@ import LandingPage from "../views/pages/LandingPage.vue";
 import LoginPage from "../views/pages/LoginPage.vue";
 import ClubPage from "../views/pages/ClubPage.vue";
 import NotFoundPage from "../views/pages/NotFoundPage.vue";
+import AdminDashboardPage from "../views/pages/AdminDashboardPage.vue";
 
 const routes = [
     { path: "/", component: LandingPage },
@@ -15,7 +16,7 @@ const routes = [
             const clubId = to.params.clubId;
             // Make an Axios request to check if the club with this ID exists
             axios
-                .get(`/club.php?id=${clubId}`)
+                .get(`/dev_club.php?id=${clubId}`)
                 .then((response) => {
                     // If the club exists, proceed to the route
                     next();
@@ -25,6 +26,10 @@ const routes = [
                     next({ name: "NotFound" });
                 });
         },
+    },
+    {
+        path: "/home",
+        component: AdminDashboardPage
     },
     { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFoundPage },
 ];

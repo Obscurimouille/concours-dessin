@@ -3,12 +3,13 @@
         <div class="logo">
             <img class="app-logo" src="/images/logos/favicon-32.png">
             <router-link to="/">
-                <h4 class="app-name">Zaiten</h4>
+                <h5 class="app-name">Zaiten</h5>
             </router-link>
         </div>
 
         <div class="menu">
             <a class="menu-item" href="/club/12345">Club</a>
+            <a class="menu-item" href="/home">Admin</a>
 
             <language-dropdown></language-dropdown>
             <router-link v-if="!isConnected" class="menu-item" to="/login">{{ $t('login') }}</router-link>
@@ -25,7 +26,7 @@
     export default {
         data() {
             return {
-                isConnected: true,
+                isConnected: false,
             };
         },
     };

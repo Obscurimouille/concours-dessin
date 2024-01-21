@@ -3,7 +3,7 @@
     <main>
         <section class="club-section">
             <div class="banner">
-                <h1 class="club-name">{{ club.name }}</h1>
+                <h4 class="club-name">{{ club.name }}</h4>
             </div>
 
             <form class="club-infos-form" type="POST">
@@ -36,10 +36,10 @@
 
         <section class="members-section">
             <div class="section-header">
-                <h1>
+                <h4>
                     {{ $t('members') }}
                     <span class="member-number">({{ club.members.length }})</span>
-                </h1>
+                </h4>
 
                 <button @click="showModal">{{ $t('addMember') }}</button>
             </div>
@@ -55,7 +55,7 @@
     <modal v-if="isModalVisible" @close="hideModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>{{ $t('addMember') }}</h3>
+                <h4>{{ $t('addMember') }}</h4>
                 <button @click="hideModal">
                     <img src="/images/icons/close_200.svg" alt="Close icon" />
                 </button>
@@ -64,17 +64,17 @@
             <form class="add-user-form" type="POST">
                 <div class="form-input-group">
                     <label for="firstname">{{ $t('firstName') }}</label>
-                    <input type="text" name="firstname" />
+                    <input type="text" name="firstname" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="lastname">{{ $t('lastName') }}</label>
-                    <input type="text" name="lastname" />
+                    <input type="text" name="lastname" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="address">{{ $t('address') }}</label>
-                    <input type="text" name="address" />
+                    <input type="text" name="address" required/>
                 </div>
 
                 <div class="button-list">
@@ -117,9 +117,8 @@
 
             if (!clubId) this.$router.push({ name: 'NotFound' });
 
-            axios.get(`/club.php?id=${clubId}`).then((response) => {
+            axios.get(`/dev_club.php?id=${clubId}`).then((response) => {
                 this.club = response.data;
-
             }).catch((error) => {
                 console.error(error);
                 this.$router.push({ name: 'NotFound' });
@@ -191,7 +190,6 @@
         color: white;
         text-shadow: 0 0 6px rgba(0, 0, 0, 40%);
         transform: translate(-50%, -25%);
-        font-size: 2rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -213,19 +211,9 @@
 
             label {
                 font-weight: 700;
-                font-size: 0.875rem;
-                line-height: 1;
             }
 
             input {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                height: 2.5rem;
-                width: 100%;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 0.4rem;
-                padding: .5rem .75rem;
-
                 &:disabled {
                     padding: .5rem 0;
                     border: none;
@@ -242,15 +230,8 @@
         justify-content: space-between;
 
         .member-number {
-            font-size: 1.2rem;
             font-weight: 500;
             line-height: 1.5rem;
-        }
-
-        button {
-            &:hover {
-                opacity: 0.7;
-            }
         }
     }
 
@@ -298,20 +279,7 @@
             flex-direction: column;
             gap: 8px;
 
-            label {
-                font-size: 0.875rem;
-                line-height: 1;
-            }
-
             input {
-                font-size: 0.875rem;
-                line-height: 1.25rem;
-                height: 2.5rem;
-                width: 100%;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 0.4rem;
-                padding: .5rem .75rem;
-
                 &:disabled {
                     padding: .5rem 0;
                     border: none;

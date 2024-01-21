@@ -1,6 +1,7 @@
 .idea
 
 src/assets/css/
+httpd.conf
 
 # Logs
 logs
