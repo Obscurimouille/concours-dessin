@@ -2,10 +2,10 @@
     <main>
         <nav class="navbar">
             <router-link to="/">
-                <h1 class="app-name">Zaiten</h1>
+                <h3 class="app-name">Zaiten</h3>
             </router-link>
 
-            <h3 class="menu-title">{{ $t('contest') }}</h3>
+            <h5 class="menu-title">{{ $t('contest') }}</h5>
 
             <a class="menu-item" href="#contest-new">
                 <img src="/images/icons/add-circle_300.svg"/>
@@ -17,47 +17,47 @@
                 <span class="material-icons">{{ $t('statistics') }}</span>
             </a>
 
-            <h3 class="menu-title">{{ $t('club') }}</h3>
+            <h5 class="menu-title">{{ $t('club') }}</h5>
 
             <a class="menu-item disabled" href="#clubs-manage">
                 <img src="/images/icons/supervisor-account_200.svg"/>
                 <span class="material-icons">{{ $t('manage') }}</span>
             </a>
-
         </nav>
 
         <div class="page-content" v-if="currentHash === 'contest-new'">
-            <h1 class="page-title">{{ $t('newContest') }}</h1>
+            <h3 class="page-title">{{ $t('newContest') }}</h3>
 
             <form class="new-contest-form" type="POST">
                 <div class="form-input-group">
                     <label for="theme">{{ $t('theme') }}</label>
-                    <input type="text" name="theme" required/>
+                    <input type="text" name="theme" maxlength="60" required/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="description">{{ $t('description') }}</label>
-                    <textarea name="description" required/>
+                    <textarea name="description" maxlength="2500" required/>
                 </div>
 
-                <div class="form-input-group">
-                    <label for="startDate">{{ $t('startDate') }}</label>
-                    <input type="date" name="startDate" required/>
-                </div>
+                <div class="date-container">
+                    <div class="form-input-group">
+                        <label for="startDate">{{ $t('startDate') }}</label>
+                        <input type="date" name="startDate" required/>
+                    </div>
 
-                <div class="form-input-group">
-                    <label for="endDate">{{ $t('endDate') }}</label>
-                    <input type="date" name="endDate" required/>
+                    <div class="form-input-group">
+                        <label for="endDate">{{ $t('endDate') }}</label>
+                        <input type="date" name="endDate" required/>
+                    </div>
                 </div>
 
                 <div class="form-input-group">
                     <label for="president">{{ $t('president') }}</label>
-                    <select name="president">
-                        <option value="value0" selected>{{ $t('choose') }}</option>
-                        <option value="value1">Jean Dupont - Club ABCD</option>
-                        <option value="value2">Charles Leblanc - Club ABCD</option>
-                        <option value="value3">Karim Lelouche - Club ABCD</option>
-                        <option value="value4">Charlotte Dupond - Club ABCD</option>
+                    <select name="president" required>
+                        <option value="" selected disabled>{{ $t('choose') }}</option>
+                        <option v-for="member in members" :key="member.id" :value="member.id">
+                            {{ member.firstname }} {{ member.lastname }} -
+                        </option>
                         <!-- Ajoutez d'autres options selon vos besoins -->
                     </select>
                 </div>
@@ -66,23 +66,23 @@
                     <button class="submit-button" type="submit">{{ $t('validate') }}</button>
                 </div>
             </form>
-
-            <!-- Theme -->
-            <!-- Description -->
-            <!-- Dates -->
-            <!-- President -->
         </div>
 
         <div class="page-content" v-else-if="currentHash === 'contest-stats'">
-            <h1 class="page-title">Contest Stats</h1>
+            <h3 class="page-title">Contest Stats</h3>
         </div>
 
         <div class="page-content" v-else-if="currentHash === 'clubs-manage'">
-            <h1 class="page-title">Manage Clubs</h1>
+            <h3 class="page-title">Manage Clubs</h3>
         </div>
 
         <div class="page-content" v-else>
-            <h1 class="page-title">Welcome to the Dashboard</h1>
+            <h3 class="page-title">Welcome to the Dashboard</h3>
+            <ul>
+                <li>
+                    <a href="#contest-new">New Contest</a>
+                </li>
+            </ul>
         </div>
     </main>
 </template>
@@ -92,25 +92,37 @@
 </script>
 
 <script>
+    import axios from 'axios';
+
     export default {
-    data() {
-        return {
-            currentHash: window.location.hash ? window.location.hash.substring(1) : ''
-        };
-    },
-    watch: {
-        $route: {
-            handler(newRoute) {
-                this.currentHash = newRoute.hash.substring(1);
-            },
-            immediate: true
+        data() {
+            return {
+                currentHash: window.location.hash ? window.location.hash.substring(1) : '',
+                members: []
+            };
+        },
+        mounted() {
+            axios.get(`/dev_members.php`).then((response) => {
+                this.members = response.data;
+                console.log(this.members);
+            }).catch((error) => {
+                console.error(error);
+            });
+        },
+        watch: {
+            $route: {
+                handler(newRoute) {
+                    this.currentHash = newRoute.hash.substring(1);
+                },
+                immediate: true
+            }
         }
-    }
     };
 </script>
 
 <style lang="scss" scoped>
     @import "@/styles/partials/colors.scss";
+    @import "@/styles/partials/breakpoints.scss";
 
     main {
         display: flex;
@@ -129,11 +141,10 @@
         padding: 24px 36px;
         border-right: 1px solid rgba(0, 0, 0, 0.15);
         background-color: $background-color;
-    }
 
-    .app-name {
-        font-size: 2rem;
-
+        @media (max-width: $view-lg) {
+            flex-basis: 200px;
+        }
     }
 
     .menu-title {
@@ -160,10 +171,15 @@
 
     .page-content {
         flex: 1 1 auto;
-        margin-top: 5rem;
         display: flex;
         flex-direction: column;
-        padding: 0 96px;
+        padding: 5rem 96px 5rem 96px;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        @media (max-width: $view-lg) {
+            padding: 3rem 64px 3rem 64px;
+        }
     }
 
     .page-title {
@@ -176,6 +192,10 @@
         align-items: center;
         gap: 32px;
         width: 100%;
+
+        @media (max-width: $view-lg) {
+            margin-bottom: 64px;
+        }
 
         .form-input-group {
             width: 100%;
@@ -195,6 +215,20 @@
                     background-color: transparent;
                     color: $text-color;
                 }
+            }
+        }
+
+        .date-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 32px;
+            width: 100%;
+
+            .form-input-group {
+                flex: 1 1 auto;
+                width: auto;
+                min-width: 180px;
             }
         }
 

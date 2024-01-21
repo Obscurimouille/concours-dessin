@@ -16,7 +16,7 @@ const routes = [
             const clubId = to.params.clubId;
             // Make an Axios request to check if the club with this ID exists
             axios
-                .get(`/club.php?id=${clubId}`)
+                .get(`/dev_club.php?id=${clubId}`)
                 .then((response) => {
                     // If the club exists, proceed to the route
                     next();

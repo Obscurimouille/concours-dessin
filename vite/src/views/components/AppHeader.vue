@@ -3,7 +3,7 @@
         <div class="logo">
             <img class="app-logo" src="/images/logos/favicon-32.png">
             <router-link to="/">
-                <h4 class="app-name">Zaiten</h4>
+                <h5 class="app-name">Zaiten</h5>
             </router-link>
         </div>
 

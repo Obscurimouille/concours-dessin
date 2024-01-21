@@ -2,7 +2,7 @@
     <main>
         <section class="login-section">
             <router-link to="/">
-                <h1 class="app-name">Zaiten</h1>
+                <h2 class="app-name">Zaiten</h2>
             </router-link>
 
             <p>{{ $t('loginToYourAccount') }}</p>
@@ -77,7 +77,6 @@
     }
 
     .app-name {
-        font-size: 3.4rem;
         font-weight: 700;
         font-family: 'Sacramento', cursive;
         color: rgba($text-color, 80%);
