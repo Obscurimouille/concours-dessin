@@ -14,6 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user'] = [
             'username' => $username,
             'isAdmin' => true,
+            'isClubPresident' => false,
+        ];
+
+        header('Location: /');
+        exit;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                               CLUB PRESIDENT                               */
+    /* -------------------------------------------------------------------------- */
+    if ($username === 'president' && $password === 'president123') {
+        $_SESSION['user'] = [
+            'username' => $username,
+            'isAdmin' => false,
+            'isClubPresident' => true,
         ];
 
         header('Location: /');
@@ -27,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user'] = [
             'username' => $username,
             'isAdmin' => false,
+            'isClubPresident' => false,
         ];
 
         header('Location: /');

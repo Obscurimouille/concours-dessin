@@ -8,8 +8,8 @@
         </div>
 
         <div class="menu">
-            <a class="menu-item" href="/club/12345">Club</a>
-            <a class="menu-item" href="/home">Admin</a>
+            <a v-if="isClubPresident" class="menu-item" href="/club/12345">Club</a>
+            <a v-if="isAdmin" class="menu-item" href="/home">Admin</a>
 
             <language-dropdown></language-dropdown>
             <router-link v-if="!isAuthenticated" class="menu-item" to="/login">{{ $t('login') }}</router-link>
@@ -30,6 +30,7 @@
             return {
                 isAuthenticated: false,
                 isAdmin: false,
+                isClubPresident: false,
             };
         },
         mounted() {
@@ -39,9 +40,17 @@
                 if (!this.isAuthenticated) return;
                 console.log('isAuthenticated');
 
-                ApiService.request(`/isAdmin.php`).then((result) => {
+                ApiService.request(`/isClubPresident.php`).then((result) => {
                     console.log(result);
-                    this.isAdmin = result.isAdmin;
+                    this.isClubPresident = result.isClubPresident;
+                    if (this.isClubPresident) return;
+                    console.log('isClubPresident');
+
+                    ApiService.request(`/isAdmin.php`).then((result) => {
+                        console.log(result);
+                        this.isAdmin = result.isAdmin;
+                        console.log('isAdmin');
+                    });
                 });
             });
         },
