@@ -12,8 +12,8 @@
             <a class="menu-item" href="/home">Admin</a>
 
             <language-dropdown></language-dropdown>
-            <router-link v-if="!isConnected" class="menu-item" to="/login">{{ $t('login') }}</router-link>
-            <router-link v-if="isConnected" class="menu-item" to="/login">{{ $t('logout') }}</router-link>
+            <router-link v-if="!isAuthenticated" class="menu-item" to="/login">{{ $t('login') }}</router-link>
+            <a v-else class="menu-item" href="/logout.php">{{ $t('logout') }}</a>
         </div>
     </div>
 </template>
@@ -23,11 +23,27 @@
 </script>
 
 <script>
+    import ApiService from '@/services/apiService';
+
     export default {
         data() {
             return {
-                isConnected: false,
+                isAuthenticated: false,
+                isAdmin: false,
             };
+        },
+        mounted() {
+            ApiService.request(`/isAuthenticated.php`).then((result) => {
+                console.log(result);
+                this.isAuthenticated = result.isAuthenticated;
+                if (!this.isAuthenticated) return;
+                console.log('isAuthenticated');
+
+                ApiService.request(`/isAdmin.php`).then((result) => {
+                    console.log(result);
+                    this.isAdmin = result.isAdmin;
+                });
+            });
         },
     };
 </script>
