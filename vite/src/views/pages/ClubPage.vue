@@ -92,7 +92,7 @@
 </script>
 
 <script>
-    import axios from 'axios';
+    import ApiService from '@/services/apiService';
 
     export default {
         data() {
@@ -117,11 +117,8 @@
 
             if (!clubId) this.$router.push({ name: 'NotFound' });
 
-            axios.get(`/dev_club.php?id=${clubId}`).then((response) => {
-                this.club = response.data;
-            }).catch((error) => {
-                console.error(error);
-                this.$router.push({ name: 'NotFound' });
+            ApiService.request(`/dev_club.php?id=${clubId}`).then((result) => {
+                this.club = result;
             });
         },
         methods: {

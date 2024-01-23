@@ -92,7 +92,7 @@
 </script>
 
 <script>
-    import axios from 'axios';
+    import ApiService from '@/services/apiService';
 
     export default {
         data() {
@@ -102,11 +102,8 @@
             };
         },
         mounted() {
-            axios.get(`/dev_members.php`).then((response) => {
-                this.members = response.data;
-                console.log(this.members);
-            }).catch((error) => {
-                console.error(error);
+            ApiService.request(`/dev_members.php`).then((result) => {
+                this.members = result;
             });
         },
         watch: {

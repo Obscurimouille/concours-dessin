@@ -7,7 +7,7 @@
 
             <p>{{ $t('loginToYourAccount') }}</p>
 
-            <form class="form" type="POST">
+            <form class="form" method="POST" action="login.php">
                 <div class="form-input-group">
                     <label for="username">{{ $t('username') }}</label>
                     <input type="text" name="username" required/>

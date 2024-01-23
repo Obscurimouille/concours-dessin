@@ -8,12 +8,9 @@
         </div>
 
         <div class="menu">
-            <a class="menu-item" href="/club/12345">Club</a>
-            <a class="menu-item" href="/home">Admin</a>
-
             <language-dropdown></language-dropdown>
-            <router-link v-if="!isConnected" class="menu-item" to="/login">{{ $t('login') }}</router-link>
-            <router-link v-if="isConnected" class="menu-item" to="/login">{{ $t('logout') }}</router-link>
+            <router-link v-if="!isAuthenticated" class="menu-item" to="/login">{{ $t('login') }}</router-link>
+            <a v-else class="menu-item" href="/logout.php">{{ $t('logout') }}</a>
         </div>
     </div>
 </template>
@@ -23,11 +20,25 @@
 </script>
 
 <script>
+    import ApiService from '@/services/apiService';
+    import AuthService from '@/services/authService';
+
     export default {
         data() {
             return {
-                isConnected: false,
+                isAuthenticated: false,
+                isAdmin: false,
+                isClubPresident: false,
             };
+        },
+        async mounted() {
+            this.isAuthenticated = await AuthService.isAuthenticated();
+            if (!this.isAuthenticated) return;
+
+            this.isClubPresident = await AuthService.isClubPresident();
+            if (this.isClubPresident) return;
+
+            this.isAdmin = await AuthService.isAdmin();
         },
     };
 </script>
