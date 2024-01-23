@@ -8,9 +8,6 @@
         </div>
 
         <div class="menu">
-            <a v-if="isClubPresident" class="menu-item" href="/club/12345">Club</a>
-            <a v-if="isAdmin" class="menu-item" href="/home">Admin</a>
-
             <language-dropdown></language-dropdown>
             <router-link v-if="!isAuthenticated" class="menu-item" to="/login">{{ $t('login') }}</router-link>
             <a v-else class="menu-item" href="/logout.php">{{ $t('logout') }}</a>
@@ -24,6 +21,7 @@
 
 <script>
     import ApiService from '@/services/apiService';
+    import AuthService from '@/services/authService';
 
     export default {
         data() {
@@ -33,26 +31,14 @@
                 isClubPresident: false,
             };
         },
-        mounted() {
-            ApiService.request(`/isAuthenticated.php`).then((result) => {
-                console.log(result);
-                this.isAuthenticated = result.isAuthenticated;
-                if (!this.isAuthenticated) return;
-                console.log('isAuthenticated');
+        async mounted() {
+            this.isAuthenticated = await AuthService.isAuthenticated();
+            if (!this.isAuthenticated) return;
 
-                ApiService.request(`/isClubPresident.php`).then((result) => {
-                    console.log(result);
-                    this.isClubPresident = result.isClubPresident;
-                    if (this.isClubPresident) return;
-                    console.log('isClubPresident');
+            this.isClubPresident = await AuthService.isClubPresident();
+            if (this.isClubPresident) return;
 
-                    ApiService.request(`/isAdmin.php`).then((result) => {
-                        console.log(result);
-                        this.isAdmin = result.isAdmin;
-                        console.log('isAdmin');
-                    });
-                });
-            });
+            this.isAdmin = await AuthService.isAdmin();
         },
     };
 </script>
