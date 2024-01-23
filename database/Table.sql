@@ -43,27 +43,29 @@ CREATE TABLE Concours (
 
 
 CREATE TABLE Club (
-    numClub INT PRIMARY KEY,
-    numDirecteur INT,
-    nomClub VARCHAR(255),
-    adresse VARCHAR(255),
+    numClub INT NOT NULL auto_increment,
+    numDirecteur INT NOT NULL,
+    nomClub VARCHAR(255) NOT NULL,
+    adresse VARCHAR(255) NOT NULL,
     numTelephone VARCHAR(20),
-    nombreAdherents INT,
-    ville VARCHAR(255),
-    departement VARCHAR(255),
-    region VARCHAR(255),
+    nombreAdherents INT NOT NULL,
+    ville VARCHAR(255) NOT NULL,
+    departement VARCHAR(255) NOT NULL,
+    region VARCHAR(255) NOT NULL,
+    PRIMARY KEY (numClub),
     FOREIGN KEY (numDirecteur) REFERENCES Directeur(numDirecteur)
 );
 
 CREATE TABLE Utilisateur (
-    numUtilisateur INT PRIMARY KEY,
-    numClub INT,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    adresse VARCHAR(255),
-    login VARCHAR(255),
-    motDePasse VARCHAR(255),
-    dateDebut DATE,
+    numUtilisateur INT NOT NULL auto_increment,
+    numClub INT NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    adresse VARCHAR(255) NOT NULL,
+    login VARCHAR(255) NOT NULL,
+    motDePasse VARCHAR(255) NOT NULL,
+    dateDebut DATE NOT NULL,
+    PRIMARY KEY (numUtilisateur),
     FOREIGN KEY (numClub) REFERENCES Club(numClub)
 );
 
@@ -92,8 +94,8 @@ CREATE TABLE Dessin (
 );
 
 CREATE TABLE Dirige (
-    numClub INT,
-    numDirecteur INT,
+    numClub INT NOT NULL,
+    numDirecteur INT NOT NULL,
     PRIMARY KEY (numClub, numDirecteur),
     FOREIGN KEY (numClub) REFERENCES Club(numClub),
     FOREIGN KEY (numDirecteur) REFERENCES Directeur(numDirecteur)
