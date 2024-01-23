@@ -1,5 +1,6 @@
 @import "partials/colors.scss";
 @import "partials/breakpoints.scss";
+@import "partials/scrollbar.scss";
 @import "header";
 
 :root {
@@ -152,28 +153,6 @@ input {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.4rem;
     padding: .5rem .75rem;
-}
-
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-    scrollbar-width: auto;
-    scrollbar-color: $primary-color transparent;
-}
-
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-    width: 10px;
-}
-
-*::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-    background-color: $primary-color;
-    border-radius: 10px;
-    background-clip: content-box;
 }
 
 @media screen and (max-width: $view-lg) {
