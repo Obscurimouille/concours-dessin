@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Evaluation;
 DROP TABLE IF EXISTS ParticipationEvaluateur;
 DROP TABLE IF EXISTS ParticipationCompetiteur;
 DROP TABLE IF EXISTS ParticipationClub;
-DROP TABLE IF EXISTS Dirige;    
+DROP TABLE IF EXISTS Dirige;
 DROP TABLE IF EXISTS Dessin;
 DROP TABLE IF EXISTS Utilisateur;
 DROP TABLE IF EXISTS President;
@@ -38,7 +38,7 @@ CREATE TABLE Concours (
     theme VARCHAR(255),
     dateDebut DATE,
     dateFin DATE,
-    etat ENUM('pas commencer', 'en cours', 'attente', 'résultat', 'évalué')
+    etat ENUM('PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'RESULTAT', 'EVALUE')
 );
 
 

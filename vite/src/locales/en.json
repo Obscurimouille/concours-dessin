@@ -48,5 +48,9 @@
     "participant": "Participant",
     "history": "History",
     "see": "See",
-    "noContestHistory": "No contest for the moment"
+    "noContestHistory": "No contest for the moment",
+    "contestNotStarted": "Soon",
+    "contestPending": "Pending results",
+    "contestEvaluated": "Evaluated",
+    "contestClosed": "Closed"
 }

@@ -14,6 +14,7 @@ const ApiService = {
             return response.data;
         }
         catch (error) {
+            alert (error)
             // Handle errors
             if (error.response && error.response.status === 401) {
                 // Redirect to unauthorized page
