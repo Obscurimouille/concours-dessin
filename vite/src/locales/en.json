@@ -31,5 +31,22 @@
     "loginToYourAccount": "Login to your account",
     "forgotPassword": "Forgot password?",
     "orSeparator": "OR",
-    "newToTheSite": "New to the site? Request an account from your club"
+    "newToTheSite": "New to the site? Request an account from your club",
+    "closedDateFormatDays": "Closed {days} days ago",
+    "closedDateFormatYesterday": "Closed yesterday",
+    "closedDateFormatToday": "Closed today",
+    "timeLeftFormatDays": "{days} days left",
+    "timeLeftFormatHours": "{hours} hours left",
+    "timeLeftFormatMinutes": "{minutes} minutes left",
+    "timeLeftFormatSeconds": "{seconds} seconds left",
+    "closed": "Closed",
+    "currently": "Currently",
+    "noContest": "No contest for the moment",
+    "participate": "Participate",
+    "participateAs": "Participate as",
+    "evaluator": "Evaluator",
+    "participant": "Participant",
+    "history": "History",
+    "see": "See",
+    "noContestHistory": "No contest for the moment"
 }

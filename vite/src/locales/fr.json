@@ -31,5 +31,22 @@
     "loginToYourAccount": "Connectez-vous à votre compte",
     "forgotPassword": "Mot de passe oublié?",
     "orSeparator": "OU",
-    "newToTheSite": "Nouveau sur Zaiten ? Faites une demande de compte auprès de votre club."
+    "newToTheSite": "Nouveau sur Zaiten ? Faites une demande de compte auprès de votre club.",
+    "closedDateFormatDays": "Terminé il y a {days} jours",
+    "closedDateFormatYesterday": "Terminé hier",
+    "closedDateFormatToday": "Terminé aujourd'hui",
+    "timeLeftFormatDays": "{days} jours restants",
+    "timeLeftFormatHours": "{hours} heures restantes",
+    "timeLeftFormatMinutes": "{minutes} minutes restantes",
+    "timeLeftFormatSeconds": "{seconds} secondes restantes",
+    "closed": "Fermé",
+    "currently": "En ce moment",
+    "noContest": "Aucun concours en cours",
+    "participate": "Participer",
+    "participateAs": "Participater en tant que",
+    "evaluator": "Evaluateur",
+    "participant": "Participant",
+    "history": "Historique",
+    "see": "Voir",
+    "noContestHistory": "Aucun concours pour le moment"
 }
