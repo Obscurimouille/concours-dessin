@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-$query = "SELECT * FROM Concours WHERE etat = 'EN_COURS' OR etat = 'PAS_COMMENCE'";
+$query = "SELECT * FROM Concours WHERE etat <> 'EN_COURS' AND etat <> 'PAS_COMMENCE'";
 
 $queryResult = executerRequeteSelect($connexion, $query);
 $failed = $queryResult['echec'];
