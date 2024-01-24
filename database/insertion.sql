@@ -14,8 +14,8 @@ VALUES
 -- Insert data into Concours table
 INSERT INTO Concours (numConcours, theme, dateDebut, dateFin, etat)
 VALUES
-    (1, 'Drawing Contest 2024', '2024-01-04', '2024-01-30', 'EN_COURS'),
-    (2, 'Art Show 2023', '2023-07-01', '2024-07-15', 'EVALUE'),
+    (1, 'Drawing Contest 2024', '2024-01-03', '2024-01-30', 'EN_COURS'),
+    (2, 'Art Show 2023', '2023-07-01', '2023-07-30', 'EVALUE'),
     (3, 'Painting Contest 2023', '2023-04-01', '2023-04-15', 'EVALUE'),
     (4, 'Art Show 2023', '2023-01-01', '2023-01-15', 'EVALUE'),
     (5, 'Drawing Contest 2023', '2023-10-01', '2022-10-15', 'EVALUE'),
@@ -28,7 +28,7 @@ VALUES
 -- Insert data into Utilisateur table (common for Competiteur, Evaluateur, President, Administrateur)
 INSERT INTO Utilisateur (numUtilisateur, nom, prenom, adresseUtilisateur, login, motDePasse, dateAdhesion, numClub, dateDeNaissance)
 VALUES
-    --values for club 1
+    (100,'Chuck', 'Norris','1 rue Jesus','chuck_norris','dieu111','2020-01-02',1,'1980-02-01'),
     (101, 'Wick', 'John', '789 Pine St', 'wick_john', 'password223', '2022-01-03', 1, '1990-05-15'),
     (109, 'Jane', 'Smith', '987 Elm St', 'jane_smith', 'pass456', '2022-02-01', 1, '1985-08-20'),
     (110, 'Bob', 'Jones', '123 Oak St', 'bob_jones', 'pass789', '2022-03-01', 1, '1995-01-25'),
@@ -53,7 +53,7 @@ VALUES
     (129, 'Dorothy', 'Lopez', '456 Maple St', 'dorothy_lopez', 'pass646566', '2023-10-01', 1, '2010-10-10'),
     (130, 'Daniel', 'Lee', '654 Birch St', 'daniel_lee', 'pass676869', '2023-11-01', 1, '2011-11-05'),
     (131, 'Karen', 'Gonzalez', '321 Cedar St', 'karen_gonzalez', 'pass707172', '2023-04-12',1,'2000-22-04'),
-    --value for club 2 
+
     (102, 'Parker', 'Peter', '789 Pine St', 'Parker_Peter', 'pass737475', '2023-05-12', 2, '1995-02-30'),
     (133, 'Matthew', 'Clark', '987 Elm St', 'matthew_clark', 'pass767778', '2023-06-12', 2, '2013-03-15'),
     (134, 'Nancy', 'Lewis', '123 Oak St', 'nancy_lewis', 'pass798081', '2023-07-12', 2, '2014-06-30'),
@@ -82,7 +82,7 @@ VALUES
     (157, 'Langlois', 'Leila', '1 Rue de Dinan', 'langlois_leila', 'pass789', '2022-04-18', 2, '1988-12-11'),
     (158, 'Michel', 'Antoine', '4 Rue Saint-Thomas', 'michel_antoine', 'passdef', '2022-04-19', 2, '1997-05-18'),
     (159, 'Guillot', 'Liam', '10 Rue Porcon de la Barbinais', 'guillot_liam', 'pass456', '2022-04-20', 2, '1992-02-21'),
-    --value for club 3
+
     (103,'Billy','Leroux','12 Rue de la Marine','billy_leroux','pass123','2022-04-01',3,'1995-06-10'),
     (160, 'Lopez', 'Emma', '12 Rue de Siam', 'lopez_emma', 'pass123', '2022-04-01', 3, '1995-06-10'),
     (161, 'Martin', 'Hugo', '8 Rue de la Porte', 'martin_hugo', 'pass456', '2022-04-02', 3, '1990-08-15'),
@@ -104,7 +104,7 @@ VALUES
     (177, 'Leroy', 'Leila', '1 Rue du Chateau', 'leroy_leila', 'pass789', '2022-04-18', 3, '1988-12-11'),
     (178, 'Guillot', 'Antoine', '4 Rue de l Eglise', 'guillot_antoine', 'passdef', '2022-04-19', 3, '1997-05-18'),
     (179, 'Thomas', 'Liam', '10 Rue Yves Collet', 'thomas_liam', 'pass456', '2022-04-20', 3, '1992-02-21'),
-    --value for club 4
+
     (104, 'Bertrand', 'Max','1 Rue de la Muro','bertrand_max','pass123','1999-04-01',4,'1990-07-10'),
     (180, 'Lefevre', 'Liam', '12 Rue de la Marine Nationale', 'lefevre_liam', 'pass123', '2022-04-01', 4, '1995-06-10'),
     (181, 'Girard', 'Zoe', '8 Rue Saint-Vincent', 'girard_zoe', 'pass456', '2022-04-02', 4, '1990-08-15'),
@@ -126,7 +126,7 @@ VALUES
     (197, 'Leroux', 'Antoine', '1 Rue de Dinan', 'leroux_antoine', 'pass789', '2022-04-18', 4, '1988-12-11'),
     (198, 'Guillot', 'Eva', '4 Rue Saint-Thomas', 'guillot_eva', 'passdef', '2022-04-19', 4, '1997-05-18'),
     (199, 'Martin', 'Noah', '10 Rue Porcon de la Barbinais', 'martin_noah', 'pass456', '2022-04-20', 4, '1992-02-21'),
-    --value for club 5
+
     (105, 'Wayne', 'Bruce','23 rue de la justice', 'wayne_bruce','pass121','2013-12-1',5,'1990-04-11'),
     (200, 'Giraud', 'Hugo', '15 Rue de la Liberté', 'giraud_hugo', 'pass123', '2022-04-01', 5, '1995-06-10'),
     (201, 'Leclerc', 'Emma', '28 Rue Kerguelen', 'leclerc_emma', 'pass456', '2022-04-02', 5, '1990-08-15'),
@@ -149,7 +149,7 @@ VALUES
     (218, 'Roussel', 'Ethan', '11 Rue des Terreaux', 'roussel_ethan', 'pass123', '2022-04-01', 5, '1995-06-10'),
     (219, 'Lemoine', 'Ines', '23 Quai Saint-Louis', 'lemoine_ines', 'pass456', '2022-04-02', 5, '1990-08-15'),
     (220, 'Brun', 'Tom', '8 Rue de la Vieille Boucherie', 'brun_tom', 'pass789', '2022-04-03', 5, '1987-12-20'),
-    --value for club 6
+
     (106,'Martin','Lea','12 Rue de la Marine','martin_lea','pass120','2010-04-01',6,'1995-06-10'),
     (221, 'Martin', 'Lola', '12 Rue de Siam', 'martin_lola', 'pass123', '2022-04-01', 6, '1995-06-10'),
     (222, 'Leclerc', 'Antoine', '18 Rue Saint-Malo', 'leclerc_antoine', 'pass456', '2022-04-02', 6, '1990-08-15'),
@@ -171,7 +171,7 @@ VALUES
     (238, 'Roux', 'Antoine', '18 Rue Saint-Malo', 'roux_antoine', 'pass789', '2022-04-03', 6, '1987-12-20'),
     (239, 'Roussel', 'Ines', '22 Rue du Chateau', 'roussel_ines', 'pass123', '2022-04-01', 6, '1995-06-10'),
     (240, 'Lemoine', 'Tom', '5 Rue de Dinan', 'lemoine_tom', 'pass456', '2022-04-02', 6, '1990-08-15'),
-    --value for club 7
+
     (107,'Starlord','Peter','12 Rue des etoiles','starlord_peter','pass160','2022-04-01',7,'1993-06-11'),
     (241, 'Giraud', 'Hugo', '15 Rue de la Liberté', 'giraud_hugo', 'pass123', '2022-04-01', 7, '1995-06-10'),
     (242, 'Leclerc', 'Emma', '28 Rue Kerguelen', 'leclerc_emma', 'pass456', '2022-04-02', 7, '1990-08-15'),
@@ -193,7 +193,7 @@ VALUES
     (258, 'Leroux', 'Antoine', '1 Rue de Dinan', 'leroux_antoine', 'pass789', '2022-04-18', 7, '1988-12-11'),
     (259, 'Guillot', 'Eva', '4 Rue Saint-Thomas', 'guillot_eva', 'passdef', '2022-04-19', 7, '1997-05-18'),
     (260, 'Martin', 'Noah', '10 Rue Porcon de la Barbinais', 'martin_noah', 'pass456', '2022-04-20', 7, '1992-02-21'),
-    --value for club 8
+
     (108,'Lee','Stan','12 Rue de Marvel','lee_stan','pass173','2022-04-11',8,'1980-06-10'),
     (261, 'Giraud', 'Hugo', '15 Rue de la Liberté', 'giraud_hugo', 'pass123', '2022-04-01', 8, '1995-06-10'),
     (262, 'Leclerc', 'Emma', '28 Rue Kerguelen', 'leclerc_emma', 'pass456', '2022-04-02', 8, '1990-08-15'),
@@ -250,101 +250,101 @@ VALUES
 -- Insert data into Evaluateur table
 INSERT INTO Evaluateur (numEvaluateur, specialite)
 VALUES
-    --club1
+
     (109, 'Portrait'),
     (110, 'Landscape'),
     (111, 'Portrait'),
-    --club2
+
     (133, 'Landscape'),
     (134, 'Portrait'),
     (135, 'Landscape'),
-    --club3
+
     (160, 'Portrait'),
     (161, 'Landscape'),
     (162, 'Portrait'),
-    --club4
+
     (180, 'Landscape'),
     (181, 'Portrait'),
     (182, 'Landscape'),
-    --club5
+
     (200, 'Portrait'),
     (201, 'Landscape'),
     (202, 'Portrait'),
-    --club6
+  
     (221, 'Landscape'),
     (222, 'Portrait'),
     (223, 'Landscape'),
-    --club7
+  
     (241, 'Portrait'),
     (242, 'Landscape'),
     (243, 'Portrait'),
-    --club8
+    
     (261, 'Landscape'),
     (262, 'Portrait'),
-    (263, 'Landscape'),
+    (263, 'Landscape');
 
 -- Insert data into Competiteur table
 INSERT INTO Competiteur (numCompetiteur, datePremiereParticipation)
 VALUES
-    --club1
-    (120, '2024-01-04'),
-    (121, '2024-01-04'),
-    (122, '2024-01-04'),
-    (123, '2024-01-04'),
-    (124, '2024-01-04'),
-    (125, '2024-01-04'),
+    
+    (120, '2023-07-01'),
+    (121, '2023-07-01'),
+    (122, '2023-07-01'),
+    (123, '2023-07-01'),
+    (124, '2023-07-01'),
+    (125, '2023-07-01'),
 
     
-    --club2
-    (140,'2024-01-04'),
-    (141,'2024-01-04'),
-    (142,'2024-01-04'),
-    (143,'2024-01-04'),
-    (144,'2024-01-04'),
-    (145,'2024-01-04'),
     
-    --club3
-    (170,'2024-01-04'),
-    (171,'2024-01-04'),
-    (172,'2024-01-04'),
-    (173,'2024-01-04'),
-    (174,'2024-01-04'),
-    (175,'2024-01-04'),
-    --club4
-    (190,'2024-01-04'),
-    (191,'2024-01-04'),
-    (192,'2024-01-04'),
-    (193,'2024-01-04'),
-    (194,'2024-01-04'),
-    (195,'2024-01-04'),
-    --club5
-    (210,'2024-01-04'),
-    (211,'2024-01-04'),
-    (212,'2024-01-04'),
-    (213,'2024-01-04'),
-    (214,'2024-01-04'),
-    (215,'2024-01-04'),
-    --club6
-    (230,'2024-01-04'),
-    (231,'2024-01-04'),
-    (232,'2024-01-04'),
-    (233,'2024-01-04'),
-    (234,'2024-01-04'),
-    (235,'2024-01-04'),
-    --club7
-    (250,'2024-01-04'),
-    (251,'2024-01-04'),
-    (252,'2024-01-04'),
-    (253,'2024-01-04'),
-    (254,'2024-01-04'),
-    (255,'2024-01-04'),
-    --club8
-    (270,'2024-01-04'),
-    (271,'2024-01-04'),
-    (272,'2024-01-04'),
-    (273,'2024-01-04'),
-    (274,'2024-01-04'),
-    (275,'2024-01-04');  
+    (140,'2023-07-01'),
+    (141,'2023-07-01'),
+    (142,'2023-07-01'),
+    (143,'2023-07-01'),
+    (144,'2023-07-01'),
+    (145,'2023-07-01'),
+    
+   
+    (170,'2023-07-01'),
+    (171,'2023-07-01'),
+    (172,'2023-07-01'),
+    (173,'2023-07-01'),
+    (174,'2023-07-01'),
+    (175,'2023-07-01'),
+    
+    (190,'2023-07-01'),
+    (191,'2023-07-01'),
+    (192,'2023-07-01'),
+    (193,'2023-07-01'),
+    (194,'2023-07-01'),
+    (195,'2023-07-01'),
+    
+    (210,'2023-07-01'),
+    (211,'2023-07-01'),
+    (212,'2023-07-01'),
+    (213,'2023-07-01'),
+    (214,'2023-07-01'),
+    (215,'2023-07-01'),
+   
+    (230,'2023-07-01'),
+    (231,'2023-07-01'),
+    (232,'2023-07-01'),
+    (233,'2023-07-01'),
+    (234,'2023-07-01'),
+    (235,'2023-07-01'),
+    
+    (250,'2023-07-01'),
+    (251,'2023-07-01'),
+    (252,'2023-07-01'),
+    (253,'2023-07-01'),
+    (254,'2023-07-01'),
+    (255,'2023-07-01'),
+    
+    (270,'2023-07-01'),
+    (271,'2023-07-01'),
+    (272,'2023-07-01'),
+    (273,'2023-07-01'),
+    (274,'2023-07-01'),
+    (275,'2023-07-01');  
 
 -- Insert data into President table
 INSERT INTO President (numPresident, prime, numConcours)
@@ -355,53 +355,143 @@ VALUES
 -- Insert data into Dessin table
 INSERT INTO Dessin (numDessin, commentaire, classement, dateRemise, leDessin, numCompetiteur, numConcours)
 VALUES
-    (1, 'Beautiful artwork', 1, '2024-01-10', 'drawing1.svg', 121, 1),
-    (2, 'Amazing creativity', 2, '2024-01-05', 'drawing2.svg', 122, 1),
-    (3, 'Art of style',3,'2024-01-29','art_of_style.svg',123,1),
-    (4, 'Art proto',4,'2024-01-29','art_proto.svg',124,1),
-    (5, 'Art of style',5,'2024-01-29','art_of_style.svg',125,1),
-    (6, 'Art of style',6,'2024-01-29','art_of_style.svg',140,1),
-    (7, 'Art of style',7,'2024-01-29','art_of_style.svg',121,1),
-    (8, 'Art of style',8,'2024-01-29','art_of_style.svg',122,1),
-    (9, 'Art of style',9,'2024-01-29','art_of_style.svg',123,1),
-    (10, 'Art of style',10,'2024-01-29','art_of_style.svg',230,1),
-    (11, 'Art of style',11,'2024-01-29','art_of_style.svg',231,1),
-    (12, 'Art of style',12,'2024-01-29','art_of_style.svg',270,1),
-    (13, 'Art of style',13,'2024-01-29','art_of_style.svg',190,1),
-    (14, 'Art of style',14,'2024-01-29','art_of_style.svg',230,1),
-    (15, 'Art of style',15,'2024-01-29','art_of_style.svg',215,1),
-    (16, 'Art of style',16,'2024-01-29','art_of_style.svg',250,1),
-    (17, 'Art of style',17,'2024-01-29','art_of_style.svg',253,1),
-    (18, 'Art of style',18,'2024-01-29','art_of_style.svg',253,1),
-    (19, 'Art of style',19,'2024-01-29','art_of_style.svg',121,1),
-    (20, 'Art of style',20,'2024-01-29','art_of_style.svg',122,1),
-    (21, 'Art of style',21,'2024-01-29','art_of_style.svg',123,1);
+    (1, 'Beautiful artwork', 1, '2023-07-01', 'drawing1.svg', 121, 2),
+    (2, 'Amazing creativity', 2, '2023-07-05', 'drawing2.svg', 122, 2),
+    (3, 'Art of style',3,'2023-07-09','art_of_style.svg',123,2),
+    (4, 'Art proto',4,'2023-07-09','art_proto.svg',124,2),
+    (5, 'batman',5,'2023-07-09','batman.svg',125,2),
+    (6, 'art play',6,'2023-07-10','art_play.svg',140,2),
+    (7, 'Art of duty',7,'2023-07-10','art_of_duty.svg',121,2),
+    (8, 'peanut',8,'2023-07-11','peanut.svg',122,2),
+    (9, 'joker',9,'2023-07-11','draw_joker.svg',123,2),
+    (10, 'playplay',10,'2023-07-12','proto_playplay.svg',230,2),
+    (11, 'style',11,'2023-07-13','style.svg',231,2),
+    (12, 'Art of ',12,'2023-07-13','art_of.svg',270,2),
+    (13, 'poule',13,'2023-07-13','poule.svg',190,2),
+    (14, 'crepe',14,'2023-07-14','crepe_draw.svg',230,2),
+    (15, 'yodamaster',15,'2023-07-15','yodamaster.svg',215,2),
+    (16, 'vador sama',16,'2023-07-16','vador_sama.svg',250,2),
+    (17, 'fufu',17,'2023-07-17','fufu.svg',253,2),
+    (18, 'licorne',18,'2023-07-17','licorne.svg',253,2),
+    (19, 'tutu',19,'2023-07-18','tutu.svg',214,2),
+    (20, 'blop',20,'2023-07-19','blop.svg',233,2),
+    (21, 'mustorc',21,'2023-07-20','orc_draw.svg',123,2);
     
 
 -- Insert data into ParticipationCompetiteur table
 INSERT INTO ParticipationCompetiteur (numConcours, numCompetiteur)
 VALUES
-    (1, 301),
-    (2, 302),
-    -- Add more participation entries as needed...
+    (2, 120),
+    (2, 121),
+    (2, 122),
+    (2, 123),
+    (2, 124),
+    (2, 125),
+    (2, 140),
+    (2, 141),
+    (2, 142),
+    (2, 143),
+    (2, 144),
+    (2, 145),
+    (2, 170),
+    (2, 171),
+    (2, 172),
+    (2, 173),
+    (2, 174),
+    (2, 175),
+    (2, 190),
+    (2, 191),
+    (2, 192),
+    (2, 193),
+    (2, 194),
+    (2, 195),
+    (2, 210),
+    (2, 211),
+    (2, 212),
+    (2, 213),
+    (2, 214),
+    (2, 215),
+    (2, 230),
+    (2, 231),
+    (2, 232),
+    (2, 233),
+    (2, 234),
+    (2, 235),
+    (2, 250),
+    (2, 251),
+    (2, 252),
+    (2, 253),
+    (2, 254),
+    (2, 255),
+    (2, 270),
+    (2, 271),
+    (2, 272),
+    (2, 273),
+    (2, 274),
+    (2, 275);
+    
 
 -- Insert data into ParticipationEvaluateur table
-INSERT INTO ParticipationEvaluateur (numCompetiteur, numEvaluateur)
+INSERT INTO ParticipationEvaluateur (numConcours, numEvaluateur)
 VALUES
-    (301, 201),
-    (302, 202),
-    -- Add more participation entries as needed...
+    (2, 109),
+    (2, 110),
+    (2, 111),
+    (2, 133),
+    (2, 134),
+    (2, 135),
+    (2, 160),
+    (2, 161),
+    (2, 162),
+    (2, 180),
+    (2, 181),
+    (2, 182),
+    (2, 200),
+    (2, 201),
+    (2, 202),
+    (2, 221),
+    (2, 222),
+    (2, 223),
+    (2, 241),
+    (2, 242),
+    (2, 243),
+    (2, 261),
+    (2, 262),
+    (2, 263);
 
 -- Insert data into ParticipationClub table
 INSERT INTO ParticipationClub (numConcours, numClub)
 VALUES
-    (1, 1),
+    (2, 1),
     (2, 2),
-    -- Add more participation entries as needed...
+    (2, 3),
+    (2, 4),
+    (2, 5),
+    (2, 6),
+    (2, 7),
+    (2, 8);
+    
 
 -- Insert data into Evaluation table
 INSERT INTO Evaluation (numEvaluation, dateEvaluation, note, commentaire, numEvaluateur, numDessin)
 VALUES
-    (601, '2024-02-12', 9.5, 'Excellent work', 201, 501),
-    (602, '2024-03-08', 8.7, 'Impressive creativity', 202, 502);
-    -- Add more evaluations as needed...
+    (1, '2024-01-05', 9.5, 'Excellent work', 201, 1),
+    (2, '2024-01-06', 8.7, 'Impressive creativity', 241, 1),
+
+    (3, '2024-01-07',7.2,'good',133,2),
+    (4, '2024-01-08',8.2,'good job',160,2),
+
+    (5, '2024-01-09',5.2,'cool',221,3),
+    (6, '2024-01-10',4.2,'euhhhh',261,3),
+
+    (7, '2024-01-11',3.2,'Loose',180,4),
+    (8, '2024-01-12',2.2,'pfff',200,4),
+
+    (9, '2024-01-13',1.2,'Beurk',242,5),
+    (10, '2024-01-14',0.2,'nop',261,5),
+    
+    (11, '2024-01-15',9.2,'Very good',263,6),
+    (12, '2024-01-16',8.2,'good art',182,6);
+
+  
+    

@@ -133,10 +133,10 @@ CREATE TABLE ParticipationCompetiteur(
 
 -- Table JParticipationEvaluateur
 CREATE TABLE ParticipationEvaluateur (
-    numCompetiteur INT,
+    numConcours INT,
     numEvaluateur INT,
-    PRIMARY KEY (numCompetiteur, numEvaluateur),
-    FOREIGN KEY (numCompetiteur) REFERENCES Competiteur(numCompetiteur),
+    PRIMARY KEY (numConcours, numEvaluateur),
+    FOREIGN KEY (numConcours) REFERENCES Concours(numConcours),
     FOREIGN KEY (numEvaluateur) REFERENCES Evaluateur(numEvaluateur)
 );
 
