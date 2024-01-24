@@ -11,50 +11,49 @@ require_once "connect.php";
 // }
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-    $request = $_GET['request'];
-    $reponse = [];
-
-    if ($request == "all"){
-        $query = "SELECT club.numClub,club.nomClub,club.adresse,club.adresse,
-        club.ville,club.numTelephone,club.nombreAdherents from club";
-        $resultat_query = executerRequeteSelect($connexion,$query);
-        $data = $resultat_query['donnees'];
-        $echec = $resultat_query['echec'];
-
-        if ($echec) {
-            http_response_code(500);
-            echo json_encode(['error' => 'Internal Server Error']);
-            exit;
-        }
-        else {
-            http_response_code(200);
-            echo json_encode($data);
-            exit;
-        }
-    }
-    if ($request == "one"){
-        $id = $_GET['id'];
-        $query = "SELECT club.numClub,club.nomClub,club.adresse,club.adresse,
-        club.ville,club.numTelephone,club.nombreAdherents from club where numClub= $id";
-        $resultat_query = executerRequeteSelect($connexion,$query);
-        $data = $resultat_query['donnees'];
-        $echec = $resultat_query['echec'];
-
-        if ($echec) {
-            http_response_code(500);
-            echo json_encode(['error' => 'Internal Server Error']);
-            exit;
-        }
-        else {
-            http_response_code(200);
-            echo json_encode($data);
-            exit;
-        }
-    }
-
-    http_response_code(400);
-    echo json_encode(['error' => 'Invalid request parameters']);
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Invalid request method']);
+    exit;
 }
+
+$request = $_GET['request'];
+$reponse = [];
+
+if ($request == "all"){
+    $query = "SELECT club.numClub,club.nomClub,club.adresse,club.adresse,
+    club.ville,club.numTelephone,club.nombreAdherents from club";
+    $resultat_query = executerRequeteSelect($connexion,$query);
+    $data = $resultat_query['donnees'];
+    $echec = $resultat_query['echec'];
+
+    if ($echec) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Internal Server Error']);
+        exit;
+    }
+    http_response_code(200);
+    echo json_encode($data);
+    exit;
+}
+if ($request == "one"){
+    $id = $_GET['id'];
+    $query = "SELECT club.numClub,club.nomClub,club.adresse,club.adresse,
+    club.ville,club.numTelephone,club.nombreAdherents from club where numClub= $id";
+    $resultat_query = executerRequeteSelect($connexion,$query);
+    $data = $resultat_query['donnees'];
+    $echec = $resultat_query['echec'];
+
+    if ($echec) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Internal Server Error']);
+        exit;
+    }
+    http_response_code(200);
+    echo json_encode($data);
+    exit;
+}
+
+http_response_code(400);
+echo json_encode(['error' => 'Invalid request parameters']);
 ?>

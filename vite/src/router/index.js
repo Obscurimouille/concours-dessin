@@ -17,7 +17,7 @@ const routes = [
         beforeEnter: async (to, from, next) => {
             // Check if the user is already logged in
             const isAuthenticated = await AuthService.isAuthenticated();
-            if (!isAuthenticated) return next();
+            if (!isAuthenticated) return next("/login");
 
             // Check if the user is a club president
             const isClubPresident = await AuthService.isClubPresident();
@@ -49,7 +49,7 @@ const routes = [
         beforeEnter: (to, from, next) => {
             const contestId = to.params.contestId;
             // Check if the contest exists
-            ApiService.request(`/dev_contest.php?id=${contestId}`).then(() => {
+            ApiService.request(`/contest.php?id=${contestId}`).then(() => {
                 next();
             });
         },

@@ -80,7 +80,7 @@
 
             if (!contestId) this.$router.push({ name: 'NotFound' });
 
-            ApiService.request(`/dev_contest.php?id=${contestId}`).then((result) => {
+            ApiService.request(`/contest.php?id=${contestId}`).then((result) => {
                 this.contest = result;
             });
         },
