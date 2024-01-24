@@ -1,7 +1,7 @@
 # Schéma Logique
 Utilisateur (<u>numUtilisateur</u>, numClub*, nom, prénom, adresse, login, motDePasse, dateDébut, dateDeNaissance) 
 
-Club(<u>numClub</u>, numDirecteur*, nomClub, adresse, numTéléphone, nombre Adhérents, ville, département, région)
+Club(<u>numClub</u>, nomClub, adresse, numTéléphone, nombre Adhérents, ville, département, région)
 
 Président (<u>numPresident*</u>, <u>numConcours*</u>, dateDebut, prime)
 
