@@ -19,18 +19,32 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 $requestParams = $_GET;
 if (isset($requestParams['id'])) {
     $query = "SELECT * FROM Concours WHERE numConcours = " . $requestParams['id'];
+    $queryResult = executerRequeteSelect($connexion, $query);
 
-    if (!isset($requestParams['theme'])) {
+    $failed = $queryResult['echec'];
+
+    if ($failed) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Internal Server Error']);
+        exit;
+    }
+
+    $data = $queryResult['donnees'];
+    
+    if (!count($data)) {
         http_response_code(404);
         echo json_encode(['error' => 'Contest not found']);
         exit;
     }
-}
-else {
-    $query = "SELECT * FROM Concours";
+
+    http_response_code(200);
+    echo json_encode($data);
+    exit;
 }
 
+$query = "SELECT * FROM Concours";
 $queryResult = executerRequeteSelect($connexion, $query);
+
 $failed = $queryResult['echec'];
 
 if ($failed) {
