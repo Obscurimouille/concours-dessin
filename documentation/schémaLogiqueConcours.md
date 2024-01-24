@@ -1,11 +1,11 @@
 # Schéma Logique
-Utilisateur (<u>numUtilisateur</u>, numClub*, nom, prénom, adresse, login, motDePasse, dateDébut) 
+Utilisateur (<u>numUtilisateur</u>, numClub*, nom, prénom, adresse, login, motDePasse, dateDébut, dateDeNaissance) 
 
 Club(<u>numClub</u>, numDirecteur*, nomClub, adresse, numTéléphone, nombre Adhérents, ville, département, région)
 
-Président (<u>numPresident</u>*, prime)
+Président (<u>numPresident*</u>, <u>numConcours*</u>, dateDebut, prime)
 
-Evaluateur (<u>numEvaluateur*</u>, specialite)
+Evaluateur (<u>numEvaluateur*</u>, specialite)  
 
 Evaluation(<u>numEvaluateur1*</u>, <u>numEvaluateur2*</u>, numDessin*, dateEvaluation, note, commentaire )
 
@@ -13,7 +13,7 @@ Compétiteur (<u>numCompetiteur*</u>, datePremParticipation)
 
 Administrateur (<u>numAdministrateur*</u>, dateDébut)
 
-Directeur (<u>numDirecteur*</u>, dateDébut)
+Directeur (<u>numDirecteur*</u>, <u>numConcours*</u>, dateDébut)
 
 Dirige (<u>numClub*</u>, <u>numDirecteur*</u>) → (Cas particulier 1X1, la création de la table Dirige est adéquate)
 
