@@ -8,6 +8,7 @@ import AdminDashboardPage from "../views/pages/AdminDashboardPage.vue";
 import HomePage from "../views/pages/HomePage.vue";
 import NotFoundPage from "../views/pages/NotFoundPage.vue";
 import UnauthorizedPage from "../views/pages/UnauthorizedPage.vue";
+import ContestPage from "../views/pages/ContestPage.vue";
 
 const routes = [
     {
@@ -38,6 +39,17 @@ const routes = [
             const clubId = to.params.clubId;
             // Check if the club exists
             ApiService.request(`/dev_club.php?id=${clubId}`).then(() => {
+                next();
+            });
+        },
+    },
+    {
+        path: "/contest/:contestId",
+        component: ContestPage,
+        beforeEnter: (to, from, next) => {
+            const contestId = to.params.contestId;
+            // Check if the contest exists
+            ApiService.request(`/dev_contest.php?id=${contestId}`).then(() => {
                 next();
             });
         },

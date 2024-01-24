@@ -48,5 +48,9 @@
     "participant": "Participant",
     "history": "Historique",
     "see": "Voir",
-    "noContestHistory": "Aucun concours pour le moment"
+    "noContestHistory": "Aucun concours pour le moment",
+    "contestNotStarted": "Bientôt",
+    "contestPending": "En attente d'évaluation",
+    "contestEvaluated": "Evalué",
+    "contestClosed": "Terminé"
 }

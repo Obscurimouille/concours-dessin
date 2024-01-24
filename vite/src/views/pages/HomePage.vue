@@ -10,11 +10,11 @@
                     <div class="current-contest-card-header">
                         <h5>{{ currentContest.name }}</h5>
                         <div class="time-left">
-                            <small>{{ formatTimeLeft(currentContest.endDate) }}</small>
+                            <small>{{ TimeService.formatTimeLeft($t, currentContest.endDate) }}</small>
                         </div>
                     </div>
                     <p>{{ $t('theme') }}: {{ currentContest.theme }}</p>
-                    <button class="participate-button">{{ $t('see') }}</button>
+                    <a class="participate-button" href="/contest/10">{{ $t('see') }}</a>
                 </div>
             </section>
         </div>
@@ -28,7 +28,7 @@
                             <p class="contest-history-card-title">{{ contest.name }}</p>
                         </div>
                         <div class="contest-history-card-content">
-                            <small>{{ formatTimeDifference(contest.endDate) }}</small>
+                            <small>{{ TimeService.formatTimeDifference($t, contest.endDate) }}</small>
                         </div>
                     </div>
                 </div>
@@ -43,6 +43,7 @@
 
 <script>
     import AuthService from '@/services/authService';
+    import TimeService from '@/services/timeService';
 
     export default {
         data() {
@@ -108,38 +109,7 @@
             this.isAdmin = await AuthService.isAdmin();
         },
         methods: {
-            getDeltaTime(date) {
-                const currentDate = new Date();
-                const givenDate = new Date(date);
-                return currentDate - givenDate;
-            },
-            getDeltaDays(date) {
-                const timeDifference = this.getDeltaTime(date)
-                const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                return daysDifference;
-            },
-            formatTimeDifference(date) {
-                const daysDifference = this.getDeltaDays(date)
 
-                // Format the result
-                if (daysDifference === 0) return this.$t('closedDateFormatToday');
-                else if (daysDifference === 1) return this.$t('closedDateFormatYesterday');
-                else return this.$t('closedDateFormatDays', { days: daysDifference });
-            },
-            formatTimeLeft(endDate) {
-                const timeDifference = -this.getDeltaTime(endDate);
-                const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-                const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-                const minutesDifference = Math.floor(timeDifference / (1000 * 60));
-                const secondsDifference = Math.floor(timeDifference / (1000));
-
-                // Format the result
-                if (daysDifference > 0) return this.$t('timeLeftFormatDays', { days: daysDifference });
-                else if (hoursDifference > 0) return this.$t('timeLeftFormatHours', { hours: hoursDifference });
-                else if (minutesDifference > 0) return this.$t('timeLeftFormatMinutes', { minutes: minutesDifference });
-                else if (secondsDifference > 0) return this.$t('timeLeftFormatSeconds', { seconds: secondsDifference });
-                else return this.$t('timeLeftFormatNow');
-            },
         }
     };
 </script>
@@ -226,6 +196,9 @@
     }
 
     .participate-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 96px;
         align-self: center;
         background-color: $primary-color;
