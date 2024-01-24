@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS Club;
 CREATE TABLE Club(
     numClub         INT NOT NULL ,
     nomClub         VARCHAR(255),
-    numDirecteur    INT,
+    
     adresseClub     VARCHAR(255),
     numTelephone    VARCHAR(20),
     nombreAdherents INT,
@@ -62,9 +62,9 @@ CREATE TABLE Utilisateur(
 CREATE TABLE Directeur(
     numDirecteur   INT NOT NULL,
     dateDebut      DATE,
-    numClub        INT,
+
     PRIMARY KEY (numDirecteur),
-    FOREIGN KEY (numClub) REFERENCES Club (numClub),
+    
     FOREIGN KEY (numDirecteur) REFERENCES Utilisateur (numUtilisateur)
 );
 
