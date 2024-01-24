@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 $id_user = $_GET['id_user'];
-$id_concour = $_GET['id_concour'];
+$id_concour = $_GET['id_contest'];
 
 $query = "SELECT 'Evaluateur' AS TypePersonne
             FROM participationevaluateur
@@ -27,7 +27,7 @@ $query = "SELECT 'Evaluateur' AS TypePersonne
 
             SELECT 'Compétiteur' AS TypePersonne
             FROM participationcompetiteur
-            WHERE  numCompetieur = $id_user AND numConcours = $id_concour
+            WHERE  numCompetiteur = $id_user AND numConcours = $id_concour
 
             UNION
 
