@@ -2,7 +2,7 @@
 INSERT INTO Club (numClub, nomClub, adresseClub, numTelephone, nombreAdherents, ville, departement, region)
 VALUES
     (1, 'Bretonart', '1 rue de la republique', '0299205868', 24, 'RENNES', 'Ille-et-Vilaine', 'Bretagne'),
-    (2, 'MARTLO', '2 rue de rennes', '0299324932', 20, 'SAINT-MALO', 'Ille-et-Vilaine', 'Bretagne'),
+    (2, 'MARTLO', '2 rue de rennes', '0299324932', 27, 'SAINT-MALO', 'Ille-et-Vilaine', 'Bretagne'),
     (3, 'MARTLO',  '34 rue du port', '0299324910', 20, 'BREST', 'Finistere', 'Bretagne'),
     (4, 'MARTLO', '4 avenue du lac', '0299322345', 20, 'QUIMPER', 'Finistere', 'Bretagne'),
     (5, 'ARTGERS', '3 rue du maine', '0299322223', 20, 'ANGERS', 'Maine-et-Loire', 'PAYS DE LA LOIRE'),
@@ -375,7 +375,8 @@ VALUES
     (18, 'licorne',18,'2023-07-17','licorne.svg',253,2),
     (19, 'tutu',19,'2023-07-18','tutu.svg',214,2),
     (20, 'blop',20,'2023-07-19','blop.svg',233,2),
-    (21, 'mustorc',21,'2023-07-20','orc_draw.svg',123,2);
+    (21, 'mustorc',21,'2023-07-20','orc_draw.svg',123,2),
+    (22, 'murlocpower',1,'2024-01-04','murloc.svg',121,1);
     
 
 -- Insert data into ParticipationCompetiteur table
@@ -475,23 +476,23 @@ VALUES
 -- Insert data into Evaluation table
 INSERT INTO Evaluation (numEvaluation, dateEvaluation, note, commentaire, numEvaluateur, numDessin)
 VALUES
-    (1, '2023-07-05', 9.5, 'Excellent work', 201, 1),
-    (2, '2023-07-06', 8.7, 'Impressive creativity', 241, 1),
+    (1, '2023-07-05', 19, 'Excellent work', 201, 1),
+    (2, '2023-07-06', 18, 'Impressive creativity', 241, 1),
 
-    (3, '2023-07-07',7.2,'good',133,2),
-    (4, '2024-01-08',8.2,'good job',160,2),
+    (3, '2023-07-07',17,'good',133,2),
+    (4, '2024-01-08',18,'good job',160,2),
 
-    (5, '2023-07-09',5.2,'cool',221,3),
-    (6, '2023-07-10',4.2,'euhhhh',261,3),
+    (5, '2023-07-09',12,'cool',221,3),
+    (6, '2023-07-10',9,'euhhhh',261,3),
 
-    (7, '2023-07-11',3.2,'Loose',180,4),
-    (8, '2023-07-12',2.2,'pfff',200,4),
+    (7, '2023-07-11',4,'Loose',180,4),
+    (8, '2023-07-12',2,'pfff',200,4),
 
-    (9, '2023-07-13',1.2,'Beurk',242,5),
-    (10, '2023-07-14',0.2,'nop',261,5),
+    (9, '2023-07-13',3,'Beurk',242,5),
+    (10, '2023-07-14',1,'nop',261,5),
     
-    (11, '2023-07-15',9.2,'Very good',263,6),
-    (12, '2023-07-16',8.2,'good art',182,6);
+    (11, '2023-07-15',18,'Very good',263,6),
+    (12, '2023-07-16',18,'good art',182,6);
 
   
     
