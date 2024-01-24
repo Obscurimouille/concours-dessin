@@ -16,19 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-$requestParams = $_GET;
-if (isset($requestParams['id'])) {
-    $query = "SELECT * FROM Concours WHERE numConcours = " . $requestParams['id'];
-
-    if (!isset($requestParams['theme'])) {
-        http_response_code(404);
-        echo json_encode(['error' => 'Contest not found']);
-        exit;
-    }
-}
-else {
-    $query = "SELECT * FROM Concours";
-}
+$query = "SELECT * FROM Concours WHERE etat = 'EN_COURS' LIMIT 1";
 
 $queryResult = executerRequeteSelect($connexion, $query);
 $failed = $queryResult['echec'];
