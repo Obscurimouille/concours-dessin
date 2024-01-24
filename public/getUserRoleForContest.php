@@ -16,6 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
+if (!isset($_GET['id_user']) || !isset($_GET['id_contest'])) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid request parameters']);
+    exit;
+}
+
 $id_user = $_GET['id_user'];
 $id_concour = $_GET['id_contest'];
 
