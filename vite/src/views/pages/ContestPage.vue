@@ -11,17 +11,28 @@
         </div>
 
         <!-- Liste des dessins à évaluer -->
-        <section>
-            
+        <section v-if="userRole=='evaluator'">
+
         </section>
 
         <!-- Depos dessin -->
-        <section>
+        <section v-if="userRole=='participant'">
+            <div class="section-header">
+                <h5>Déposer un dessin </h5><span>({{ drawings.length }}/{{ nbMaxDrawings }})</span>
+            </div>
 
+            <div class="drawing-list">
+                <div class="drawing" v-for="(drawing, index) in drawings" :key="index">
+                    <p>{{ (index+1) + '. ' + drawing.commentaire }}</p>
+                    <p>Déposé le {{ drawing.dateRemise }}</p>
+                </div>
+            </div>
+
+            <button class="upload-drawing-button" :disabled="drawings.length == nbMaxDrawings">Déposer</button>
         </section>
 
         <!-- Infos générales -->
-        <section>
+        <section v-if="userRole=='president'">
 
         </section>
     </main>
@@ -38,7 +49,22 @@
     export default {
         data() {
             return {
-                userRole: undefined,
+                userRole: 'participant',
+                drawings: [
+                    {
+                        commentaire: "Mon dessin",
+                        dateRemise: "2021-06-01",
+                    },
+                    {
+                        commentaire: "Plus dans unstyle croustillant",
+                        dateRemise: "2021-06-02",
+                    },
+                    {
+                        commentaire: "T'as les croustis?",
+                        dateRemise: "2021-06-04",
+                    }
+                ],
+                nbMaxDrawings: 3,
                 contest: {
                     numConcours: undefined,
                     theme: undefined,
@@ -55,7 +81,6 @@
             if (!contestId) this.$router.push({ name: 'NotFound' });
 
             ApiService.request(`/dev_contest.php?id=${contestId}`).then((result) => {
-                console.log(result);
                 this.contest = result;
             });
         },
@@ -81,10 +106,70 @@
 
     main {
         display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
         margin: 0 0 3rem 0;
         gap: 32px;
+    }
+
+    section {
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 20%;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 28px 36px 32px 36px;
+        gap: 24px;
+        background-color: white;
+    }
+
+    .drawing-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .drawing {
+        padding: 20px 24px;
+        border-radius: 12px;
+        background-color: rgba($primary-color, 15%);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .upload-drawing-button {
+        background-color: $primary-color;
+        color: $background-color;
+        height: 38px;
+        min-width: 100px;
+        padding: 0 22px;
+        border-radius: 19px;
+        line-height: 2.25rem;
+
+        &:disabled {
+            cursor: not-allowed;
+            color: rgba(white, 75%);
+            background-color: rgba(black, 35%);
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .section-header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .banner {
@@ -94,7 +179,7 @@
         justify-content: flex-end;
         width: 100%;
         height: 180px;
-        padding: 0 12%;
+        padding: 0 20%;
         border-bottom: 1px solid rgba(0, 0, 0, 0.15);
         background-color: $primary-color;
         @extend %topography-pattern;
@@ -107,8 +192,8 @@
         .banner-content {
             position: absolute;
             bottom: 0;
-            left: 10%;
-            width: 80%;
+            left: 20%;
+            width: 60%;
             transform: translateY(50%);
             display: flex;
             flex-direction: row;
