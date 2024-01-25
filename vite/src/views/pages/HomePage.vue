@@ -8,13 +8,12 @@
                 <p v-if="!currentContest">{{ $t('noContest') }}</p>
                 <div v-else class="current-contest-card">
                     <div class="current-contest-card-header">
-                        <h5>{{ currentContest.name }}</h5>
+                        <h5>{{ currentContest.theme }}</h5>
                         <div class="time-left">
-                            <small>{{ TimeService.formatTimeLeft($t, currentContest.endDate) }}</small>
+                            <small>{{ TimeService.formatTimeLeft($t, currentContest.dateFin) }}</small>
                         </div>
                     </div>
-                    <p>{{ $t('theme') }}: {{ currentContest.theme }}</p>
-                    <a class="participate-button" href="/contest/10">{{ $t('see') }}</a>
+                    <a class="participate-button" :href="'/contest/' + currentContest.numConcours">{{ $t('see') }}</a>
                 </div>
             </section>
         </div>
@@ -23,14 +22,16 @@
                 <h4>{{ $t('history') }}</h4>
                 <p v-if="!contestHistory.length">{{ $t('noContestHistory') }}</p>
                 <div v-else class="contest-history-list">
-                    <div class="contest-history-card" v-for="contest in contestHistory" :key="contest.id">
-                        <div class="contest-history-card-banner">
-                            <p class="contest-history-card-title">{{ contest.name }}</p>
+                    <a class="contest-history-card" v-for="contest in contestHistory" :key="contest.id" :href="'/contest/' + contest.numConcours">
+                        <div class="contest-history-card-banner" :class="contest.etat">
+                            <p class="contest-history-card-title">{{ contest.theme }}</p>
                         </div>
                         <div class="contest-history-card-content">
-                            <small>{{ TimeService.formatTimeDifference($t, contest.endDate) }}</small>
+                            <small v-if="contest.etat == 'ATTENTE'">{{ $t('contestPending') }}</small>
+                            <small v-if="contest.etat == 'RESULTAT'">{{ $t('availableResults') }}</small>
+                            <small v-if="contest.etat == 'EVALUE'">{{ TimeService.formatTimeDifference($t, contest.dateFin) }}</small>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </section>
         </div>
@@ -44,62 +45,17 @@
 <script>
     import AuthService from '@/services/authService';
     import TimeService from '@/services/timeService';
+    import ContestService from "@/services/contestService";
 
     export default {
         data() {
             return {
-                currentContest: {
-                    id: 5,
-                    name: "Soleil d'été",
-                    theme: "Beauté du soleil",
-                    startDate: new Date(Date.now() - (86400000 * 3)),
-                    endDate: new Date(Date.now() + (86400000 * 14)),
-                },
-                contestHistory: [
-                    {
-                        id: 1,
-                        name: "Concours 1",
-                        endDate: new Date(Date.now() - (86400000 * 14)),
-                    },
-                    {
-                        id: 9,
-                        name: "Concours 2",
-                        endDate: new Date(Date.now() - 86400000),
-                    },
-                    {
-                        id: 7,
-                        name: "Concours 3",
-                        endDate: new Date("2023-09-10"),
-                    },
-                    {
-                        id: 81,
-                        name: "Concours 4",
-                        endDate: new Date("2023-01-10"),
-                    },
-                    {
-                        id: 54,
-                        name: "Concours 5",
-                        endDate: new Date("2023-12-16"),
-                    },
-                    {
-                        id: 32,
-                        name: "Concours 6",
-                        endDate: new Date("2023-08-24"),
-                    },
-                    {
-                        id: 31,
-                        name: "Concours 7",
-                        endDate: new Date("2023-08-24"),
-                    },
-                    {
-                        id: 24,
-                        name: "Concours 8",
-                        endDate: new Date("2023-08-24"),
-                    }
-                ]
+                currentContest: {},
+                contestHistory: []
             };
         },
         async mounted() {
+            await this.fetchData();
             this.isAuthenticated = await AuthService.isAuthenticated();
             if (!this.isAuthenticated) return;
 
@@ -109,7 +65,10 @@
             this.isAdmin = await AuthService.isAdmin();
         },
         methods: {
-
+            async fetchData() {
+                this.currentContest = await ContestService.getCurrent();
+                this.contestHistory = await ContestService.getHistory();
+            }
         }
     };
 </script>
@@ -193,6 +152,11 @@
         border-radius: 10px;
         border: 1px solid rgba(0, 0, 0, 0.15);
         min-width: 160px;
+        transition: transform 0.15s ease-in-out;
+
+        &:hover {
+            transform: scale(98%);
+        }
     }
 
     .participate-button {
@@ -216,8 +180,19 @@
         width: 100%;
         height: 50px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        background-color: rgba(black, 50%);
         @extend %topography-pattern;
+
+        &.ATTENTE {
+            background-color: $primary-color;
+        }
+
+        &.RESULTAT {
+            background-color: $primary-color;
+        }
+
+        &.EVALUE {
+            background-color: rgba(black, 50%);
+        }
     }
 
     .contest-history-card-title {

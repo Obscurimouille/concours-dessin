@@ -29,5 +29,5 @@ if ($failed) {
 
 $data = $queryResult['donnees'];
 http_response_code(200);
-echo json_encode($data);
+echo json_encode($data[0]);
 exit;

@@ -43,12 +43,13 @@
 </script>
 
 <script>
-    import ApiService from '@/services/apiService';
     import TimeService from '@/services/timeService';
+    import ContestService from "@/services/contestService";
 
     export default {
         data() {
             return {
+                contestId: undefined,
                 userRole: 'participant',
                 drawings: [
                     {
@@ -65,26 +66,22 @@
                     }
                 ],
                 nbMaxDrawings: 3,
-                contest: {
-                    numConcours: undefined,
-                    theme: undefined,
-                    dateDebut: undefined,
-                    dateFin: undefined,
-                    etat: undefined,
-                },
+                contest: {},
                 isModalVisible: false
             }
         },
-        mounted() {
-            const contestId = this.$route.params.contestId;
+        async mounted() {
+            this.contestId = this.$route.params.contestId;
 
-            if (!contestId) this.$router.push({ name: 'NotFound' });
+            if (!this.contestId) this.$router.push({ name: 'NotFound' });
 
-            ApiService.request(`/contest.php?id=${contestId}`).then((result) => {
-                this.contest = result;
-            });
+            await this.fetchData();
         },
         methods: {
+            async fetchData() {
+                this.contest = await ContestService.getById(this.contestId);
+                console.log(this.contest);
+            },
             getTooltipContent() {
                 'PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'RESULTAT', 'EVALUE'
                 switch (this.contest.etat) {

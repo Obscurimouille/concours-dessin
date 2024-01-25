@@ -30,7 +30,7 @@ if (isset($requestParams['id'])) {
     }
 
     $data = $queryResult['donnees'];
-    
+
     if (!count($data)) {
         http_response_code(404);
         echo json_encode(['error' => 'Contest not found']);
@@ -38,7 +38,7 @@ if (isset($requestParams['id'])) {
     }
 
     http_response_code(200);
-    echo json_encode($data);
+    echo json_encode($data[0]);
     exit;
 }
 

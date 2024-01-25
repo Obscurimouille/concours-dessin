@@ -52,5 +52,6 @@
     "contestNotStarted": "Bientôt",
     "contestPending": "En attente d'évaluation",
     "contestEvaluated": "Evalué",
-    "contestClosed": "Terminé"
+    "contestClosed": "Terminé",
+    "availableResults": "Résultats disponibles"
 }
