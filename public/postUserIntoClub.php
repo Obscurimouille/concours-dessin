@@ -2,7 +2,7 @@
 
 header("Content-Type: application/json");
 require_once "connect.php";
-require_once "resquestUtils.php";
+require_once "requestUtils.php";
 
 // ensureUserAuthenticated();
 
