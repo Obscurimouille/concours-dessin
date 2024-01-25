@@ -9,13 +9,11 @@ require_once "connect.php";
 
 // ensureUserAuthenticated();
 
+/* -------------------------------------------------------------------------- */
+
 $query = "SELECT * FROM Concours WHERE etat = 'EN_COURS' LIMIT 1";
-$queryResult = executerRequeteSelect($connexion, $query);
+$data = handleDBSelectRequest($connexion, $query);
 
-$error = $queryResult['echec'];
-if ($error) internalServerError();
-
-$data = $queryResult['donnees'];
 http_response_code(200);
 echo json_encode($data[0]);
 exit;

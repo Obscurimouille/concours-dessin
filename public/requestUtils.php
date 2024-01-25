@@ -28,8 +28,14 @@ function invalidRequestParams() {
     exit;
 }
 
+function handleDBSelectRequest($connection, $query) {
+    $queryResult = executerRequeteSelect($connection, $query);
+    if ($queryResult['echec']) internalServerError();
+    return $queryResult['donnees'];
+}
+
 function handleDBRequest($connection, $query) {
-    $queryResult = executerRequeteSelect($connexion, $query);
+    $queryResult = executerRequete($connection, $query);
     if ($queryResult['echec']) internalServerError();
     return $queryResult['donnees'];
 }

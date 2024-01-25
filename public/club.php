@@ -12,23 +12,17 @@ require_once "connect.php";
 /* -------------------------------------------------------------------------- */
 
 if (isset($_GET['id'])){
-    $query = "SELECT * FROM club where numClub = " . $_GET['id'];
-    $queryResult = executerRequeteSelect($connexion,$query);
-    $data = $queryResult['donnees'];
-
-    $error = $queryResult['echec'];
-    if ($error) internalServerError();
+    $id = $_GET['id'];
+    $query = "SELECT * FROM club where numClub = $id";
+    $data = handleDBSelectRequest($connexion, $query);
 
     http_response_code(200);
     echo json_encode($data);
     exit;
 }
 
-$queryResult = executerRequeteSelect($connexion, "SELECT * FROM Club");
-$data = $queryResult['donnees'];
-
-$error = $queryResult['echec'];
-if ($error) internalServerError();
+$query = "SELECT * FROM Club";
+$data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);
 echo json_encode($data);

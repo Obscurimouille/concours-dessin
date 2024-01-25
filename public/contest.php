@@ -14,12 +14,7 @@ require_once "connect.php";
 $requestParams = $_GET;
 if (isset($requestParams['id'])) {
     $query = "SELECT * FROM Concours WHERE numConcours = " . $requestParams['id'];
-    $queryResult = executerRequeteSelect($connexion, $query);
-
-    $error = $queryResult['echec'];
-    if ($error) internalServerError();
-
-    $data = $queryResult['donnees'];
+    $data = handleDBSelectRequest($connexion, $query);
 
     if (!count($data)) {
         http_response_code(404);
@@ -33,12 +28,8 @@ if (isset($requestParams['id'])) {
 }
 
 $query = "SELECT * FROM Concours";
-$queryResult = executerRequeteSelect($connexion, $query);
+$data = handleDBSelectRequest($connexion, $query);
 
-$error = $queryResult['echec'];
-if ($error) internalServerError();
-
-$data = $queryResult['donnees'];
 http_response_code(200);
 echo json_encode($data);
 exit;

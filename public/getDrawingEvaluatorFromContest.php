@@ -13,18 +13,12 @@ if (!isset($_GET['id_user']) || !isset($_GET['id_contest'])) invalidRequestParam
 
 /* -------------------------------------------------------------------------- */
 
-
-
 $id_user = $_GET['id_user'];
 $id_concour = $_GET['id_contest'];
 
 $query = "SELECT * FROM dessin WHERE numConcours =$id_concour
 AND numDessin = (SELECT numDessin FROM evaluation WHERE numEvaluateur = $id_user); ";
-$queryResult = executerRequeteSelect($connexion,$query);
-$data = $queryResult['donnees'];
-
-$error = $queryResult['echec'];
-if ($error) internalServerError();
+$data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);
 echo json_encode($data);

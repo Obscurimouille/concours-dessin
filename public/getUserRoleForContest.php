@@ -31,11 +31,7 @@ $query = "SELECT 'Evaluateur' AS TypePersonne
             SELECT 'Président' AS TypePersonne
             FROM president
             WHERE  numPresident = $id_user AND numConcours = $id_concour";
-$queryResult = executerRequeteSelect($connexion,$query);
-$data = $queryResult['donnees'];
-
-$error = $queryResult['echec'];
-if ($error) internalServerError();
+$data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);
 echo json_encode($data);
