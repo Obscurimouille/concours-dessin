@@ -16,7 +16,6 @@ if ( !isset($_POST['id_club']) || !isset($_POST['nom']) || !isset($_POST['prenom
 
 /* -------------------------------------------------------------------------- */
 
-// $body = json_decode(file_get_contents('php://input'), true);
 $id_club = $_POST['id_club'];
 $nom = $_POST['nom'];
 $prenom = $_POST['prenom'];
@@ -26,10 +25,7 @@ $mdp = $_POST['mdp'];
 $dateAdhesion = $_POST['dateAdhesion'];
 $dateNaissance = $_POST['dateNaissance'];
 
-// $id_club = intval($id_club);
-// $dateAdhesion = strval($dateAdhesion);
-// $dateNaissance = strval($dateNaissance);
-
+// ALTER TABLE `utilisateur` CHANGE `numUtilisateur` `numUtilisateur` INT(11) NOT NULL AUTO_INCREMENT;
 $query = "INSERT INTO Utilisateur (nom, prenom, adresseUtilisateur, login, motDePasse, dateAdhesion, numClub, dateDeNaissance)
 VALUES ('$nom', '$prenom', '$adresse', '$login', '$mdp', '$dateAdhesion', $id_club, '$dateNaissance'); ";
 $data = handleDBRequest($connexion, $query);
