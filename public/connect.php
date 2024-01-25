@@ -43,10 +43,14 @@ function executerRequete($connexion, $requete) {
     // Vérifier si la requête a réussi
     if (!$resultat) {
         die("Échec de la requête : " . $connexion->error);
+        $echec = true;
+        }
+        else {
+        $echec = false;
     }
 
     // Renvoyer le nombre de lignes affectées (utile pour les requêtes INSERT, UPDATE, DELETE)
-    return $connexion->affected_rows;
+    return array('donnees' => $connexion->affected_rows, 'echec' => $echec);
 }
 
 //info de connection à la base
