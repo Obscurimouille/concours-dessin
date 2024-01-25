@@ -5,6 +5,7 @@
     "logout": "Logout",
     "username": "Username",
     "password": "Password",
+    "wrongCredentials": "Wrong credentials",
     "address": "Address",
     "city": "City",
     "department": "Department",

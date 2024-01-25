@@ -5,6 +5,7 @@
     "logout": "Deconnexion",
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
+    "wrongCredentials": "Nom d'utilisateur ou mot de passe incorrect",
     "address": "Adresse",
     "city": "Ville",
     "department": "Department",

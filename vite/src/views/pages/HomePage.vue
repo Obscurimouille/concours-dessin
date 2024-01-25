@@ -28,7 +28,6 @@
                         </div>
                         <div class="contest-history-card-content">
                             <small v-if="contest.etat == 'ATTENTE'">{{ $t('contestPending') }}</small>
-                            <small v-if="contest.etat == 'RESULTAT'">{{ $t('availableResults') }}</small>
                             <small v-if="contest.etat == 'EVALUE'">{{ TimeService.formatTimeDifference($t, contest.dateFin) }}</small>
                         </div>
                     </a>
@@ -183,10 +182,6 @@
         @extend %topography-pattern;
 
         &.ATTENTE {
-            background-color: $primary-color;
-        }
-
-        &.RESULTAT {
             background-color: $primary-color;
         }
 

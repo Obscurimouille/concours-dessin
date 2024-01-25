@@ -83,12 +83,11 @@
                 console.log(this.contest);
             },
             getTooltipContent() {
-                'PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'RESULTAT', 'EVALUE'
+                // 'PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'EVALUE'
                 switch (this.contest.etat) {
                     case 'PAS_COMMENCE': return this.$t('contestNotStarted');
                     case 'EN_COURS': return TimeService.formatTimeLeft(this.$t, this.contest.dateFin)
                     case 'ATTENTE': return this.$t('contestPending');
-                    case 'RESULTAT': return this.$t('contestEvaluated');
                     case 'EVALUE': return this.$t('contestClosed');
                 }
             }

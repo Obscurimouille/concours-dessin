@@ -21,6 +21,8 @@
                     </a>
                 </div>
 
+                <small v-if="wrongCredentials" class="wrong-credentials">{{ $t('wrongCredentials') }}</small>
+
                 <button class="submit-button" type="submit">{{ $t('login') }}</button>
             </form>
 
@@ -35,8 +37,18 @@
     </main>
 </template>
 
-<script setup>
-    // Component setup script
+<script>
+    export default {
+        data() {
+            return {
+                wrongCredentials: false
+            };
+        },
+        mounted() {
+            const hashValue = window.location.hash.substring(1);
+            this.wrongCredentials = hashValue === 'wrong-credentials';
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -52,6 +64,10 @@
         height: 100%;
         background-color: $primary-color;
         @extend %topography-pattern;
+    }
+
+    .wrong-credentials {
+        color: $error-color;
     }
 
     .login-section {

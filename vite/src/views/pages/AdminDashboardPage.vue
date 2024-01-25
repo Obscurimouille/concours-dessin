@@ -101,10 +101,8 @@
                 members: []
             };
         },
-        mounted() {
-            ApiService.request(`/dev_members.php`).then((result) => {
-                this.members = result;
-            });
+        async mounted() {
+            this.members = await ApiService.request(`/dev_members.php`);
         },
         watch: {
             $route: {
