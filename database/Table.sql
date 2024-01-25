@@ -36,7 +36,7 @@ CREATE TABLE Concours(
     theme       VARCHAR(255),
     dateDebut   DATE,
     dateFin     DATE,
-    etat        ENUM('PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'RESULTAT', 'EVALUE'),
+    etat        ENUM('PAS_COMMENCE', 'EN_COURS', 'ATTENTE','EVALUE'),
     PRIMARY KEY (numConcours)
 );
 
