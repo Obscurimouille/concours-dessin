@@ -27,3 +27,9 @@ function invalidRequestParams() {
     echo json_encode(['error' => 'Invalid request parameters']);
     exit;
 }
+
+function handleDBRequest($connection, $query) {
+    $queryResult = executerRequeteSelect($connexion, $query);
+    if ($queryResult['echec']) internalServerError();
+    return $queryResult['donnees'];
+}
