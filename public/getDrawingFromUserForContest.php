@@ -13,6 +13,8 @@ if (!isset($_GET['id_user']) || !isset($_GET['id_contest'])) invalidRequestParam
 
 /* -------------------------------------------------------------------------- */
 
+// Récupérer les dessins qu'un compétiteur a soumis pour un concours donné.
+
 $id_user = $_GET['id_user'];
 $id_concour = $_GET['id_contest'];
 

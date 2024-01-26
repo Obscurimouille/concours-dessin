@@ -9,7 +9,7 @@ VALUES
     (6, 'CHOLART', '3 rue de Angers', '0299322222', 20, 'CHOLET', 'Maine-et-Loire', 'PAYS DE LA LOIRE'),
     (7, 'NARTO', '9 avenue de la liberter', '0299322111', 20, 'NANTES', 'Loire-Atlantique', 'PAYS DE LA LOIRE'),
     (8, 'NAZAIRART', '3 route du port', '0299325654', 20, 'SAINT-NAZAIRE', 'Loire-Atlantique', 'PAYS DE LA LOIRE');
-    
+
 
 -- Insert data into Concours table
 INSERT INTO Concours (numConcours, theme, dateDebut, dateFin, etat)
@@ -25,12 +25,12 @@ VALUES
     (9, 'Drawing Contest 2022', '2022-10-01', '2022-10-15', 'EVALUE'),
     (10, 'Spring Art together 2024','2024-05-02','2024-05-30','PAS_COMMENCE');
 
-    
+
 
 -- Insert data into Utilisateur table (common for Competiteur, Evaluateur, President, Administrateur)
 INSERT INTO Utilisateur (numUtilisateur, nom, prenom, adresseUtilisateur, login, motDePasse, dateAdhesion, numClub, dateDeNaissance)
 VALUES
-    (100,'Chuck', 'Norris','1 rue Jesus','chuck_norris','dieu111','2020-01-02',1,'1980-02-01'),
+    (100, 'Chuck', 'Norris','1 rue Jesus','chuck_norris','dieu111','2020-01-02',1,'1980-02-01'),
     (101, 'Wick', 'John', '789 Pine St', 'wick_john', 'password223', '2022-01-03', 1, '1990-05-15'),
     (109, 'Jane', 'Smith', '987 Elm St', 'jane_smith', 'pass456', '2022-02-01', 1, '1985-08-20'),
     (110, 'Bob', 'Jones', '123 Oak St', 'bob_jones', 'pass789', '2022-03-01', 1, '1995-01-25'),
@@ -247,7 +247,7 @@ VALUES
 INSERT INTO Administrateur (numAdministrateur, dateDebut)
 VALUES
     (100, '2022-01-01');
-    
+
 
 -- Insert data into Evaluateur table
 INSERT INTO Evaluateur (numEvaluateur, specialite)
@@ -272,15 +272,15 @@ VALUES
     (200, 'Portrait'),
     (201, 'Landscape'),
     (202, 'Portrait'),
-  
+
     (221, 'Landscape'),
     (222, 'Portrait'),
     (223, 'Landscape'),
-  
+
     (241, 'Portrait'),
     (242, 'Landscape'),
     (243, 'Portrait'),
-    
+
     (261, 'Landscape'),
     (262, 'Portrait'),
     (263, 'Landscape');
@@ -288,7 +288,7 @@ VALUES
 -- Insert data into Competiteur table
 INSERT INTO Competiteur (numCompetiteur, datePremiereParticipation)
 VALUES
-    
+
     (120, '2023-07-01'),
     (121, '2023-07-01'),
     (122, '2023-07-01'),
@@ -301,8 +301,8 @@ VALUES
     (129, '2023-10-01'),
     (130, '2023-10-01'),
     (131, '2023-10-01'),
-    
-    
+
+
     (140,'2023-07-01'),
     (141,'2023-07-01'),
     (142,'2023-07-01'),
@@ -316,8 +316,8 @@ VALUES
     (150,'2023-10-01'),
     (151,'2023-10-01'),
 
-    
-   
+
+
     (170,'2023-07-01'),
     (171,'2023-07-01'),
     (172,'2023-07-01'),
@@ -330,7 +330,7 @@ VALUES
     (177,'2023-10-01'),
     (178,'2023-10-01'),
     (179,'2023-10-01'),
-    
+
     (190,'2023-07-01'),
     (191,'2023-07-01'),
     (192,'2023-07-01'),
@@ -344,7 +344,7 @@ VALUES
     (198,'2023-10-01'),
     (199,'2023-10-01'),
 
-    
+
     (210,'2023-07-01'),
     (211,'2023-07-01'),
     (212,'2023-07-01'),
@@ -357,7 +357,7 @@ VALUES
     (218,'2023-10-01'),
     (219,'2023-10-01'),
     (220,'2023-10-01'),
-   
+
     (230,'2023-07-01'),
     (231,'2023-07-01'),
     (232,'2023-07-01'),
@@ -370,7 +370,7 @@ VALUES
     (238,'2023-10-01'),
     (239,'2023-10-01'),
     (240,'2023-10-01'),
-    
+
     (250,'2023-07-01'),
     (251,'2023-07-01'),
     (252,'2023-07-01'),
@@ -383,13 +383,13 @@ VALUES
     (258,'2023-10-01'),
     (259,'2023-10-01'),
     (260,'2023-10-01'),
-    
+
     (270,'2023-07-01'),
     (271,'2023-07-01'),
     (272,'2023-07-01'),
     (273,'2023-07-01'),
     (274,'2023-07-01'),
-    (275,'2023-07-01'),  
+    (275,'2023-07-01'),
     (269,'2023-10-01'),
     (276,'2023-10-01'),
     (277,'2023-10-01'),
@@ -403,32 +403,32 @@ VALUES
     (112, 500.00, 1),
     (136, 500.00, 2),
     (264, 500.00, 3);
- 
+
 
 -- Insert data into Dessin table
 INSERT INTO Dessin (numDessin, commentaire, classement, dateRemise, leDessin, numCompetiteur, numConcours)
 VALUES
-    (1, 'Beautiful artwork', 1, '2023-07-01', 'drawing1.svg', 121, 2),
-    (2, 'Amazing creativity', 2, '2023-07-05', 'drawing2.svg', 122, 2),
-    (3, 'Art of style',3,'2023-07-09','art_of_style.svg',123,2),
-    (4, 'Art proto',4,'2023-07-09','art_proto.svg',124,2),
-    (5, 'batman',5,'2023-07-09','batman.svg',125,2),
-    (6, 'art play',6,'2023-07-10','art_play.svg',140,2),
-    (7, 'Art of duty',7,'2023-07-10','art_of_duty.svg',121,2),
-    (8, 'peanut',8,'2023-07-11','peanut.svg',122,2),
-    (9, 'joker',9,'2023-07-11','draw_joker.svg',123,2),
-    (10, 'playplay',10,'2023-07-12','proto_playplay.svg',230,2),
-    (11, 'style',11,'2023-07-13','style.svg',231,2),
-    (12, 'Art of ',12,'2023-07-13','art_of.svg',270,2),
-    (13, 'poule',13,'2023-07-13','poule.svg',190,2),
-    (14, 'crepe',14,'2023-07-14','crepe_draw.svg',230,2),
-    (15, 'yodamaster',15,'2023-07-15','yodamaster.svg',215,2),
-    (16, 'vador sama',16,'2023-07-16','vador_sama.svg',250,2),
-    (17, 'fufu',17,'2023-07-17','fufu.svg',253,2),
-    (18, 'licorne',18,'2023-07-17','licorne.svg',253,2),
-    (19, 'tutu',19,'2023-07-18','tutu.svg',214,2),
-    (20, 'blop',20,'2023-07-19','blop.svg',233,2),
-    (21, 'mustorc',21,'2023-07-20','orc_draw.svg',123,2),
+    (1, 'Beautiful artwork', 1, '2023-07-01', 'drawing1.svg', 121, 1),
+    (2, 'Amazing creativity', 2, '2023-07-05', 'drawing2.svg', 122, 1),
+    (3, 'Art of style',3,'2023-07-09','art_of_style.svg',123,1),
+    (4, 'Art proto',4,'2023-07-09','art_proto.svg',124,1),
+    (5, 'batman',5,'2023-07-09','batman.svg',125,1),
+    (6, 'art play',6,'2023-07-10','art_play.svg',140,1),
+    (7, 'Art of duty',7,'2023-07-10','art_of_duty.svg',121,1),
+    (8, 'peanut',8,'2023-07-11','peanut.svg',122,1),
+    (9, 'joker',9,'2023-07-11','draw_joker.svg',123,1),
+    (10, 'playplay',10,'2023-07-12','proto_playplay.svg',230,1),
+    (11, 'style',11,'2023-07-13','style.svg',231,1),
+    (12, 'Art of ',12,'2023-07-13','art_of.svg',270,1),
+    (13, 'poule',13,'2023-07-13','poule.svg',190,1),
+    (14, 'crepe',14,'2023-07-14','crepe_draw.svg',230,1),
+    (15, 'yodamaster',15,'2023-07-15','yodamaster.svg',215,1),
+    (16, 'vador sama',16,'2023-07-16','vador_sama.svg',250,1),
+    (17, 'fufu',17,'2023-07-17','fufu.svg',253,1),
+    (18, 'licorne',18,'2023-07-17','licorne.svg',253,1),
+    (19, 'tutu',19,'2023-07-18','tutu.svg',214,1),
+    (20, 'blop',20,'2023-07-19','blop.svg',233,1),
+    (21, 'mustorc',21,'2023-07-20','orc_draw.svg',123,1),
     (22, 'panda',2,'2023-10-02','panda.svg',146,5),
     (23, 'porki art',3,'2023-10-04','porkiart.svg',176,5),
     (24, 'Louparrt',4,'2023-10-06','louparrt.svg',188,5),
@@ -438,59 +438,59 @@ VALUES
     (28, 'arduinomlife',8,'2023-10-14','arduinomlife.svg',269,5),
     (29, 'PourLalliance',1,'2023-10-20','pourlalliance.svg',126,5),
     (40, 'murlocpower',1,'2024-01-04','murloc.svg',121,1);
-    
+
 
 -- Insert data into ParticipationCompetiteur table
 INSERT INTO ParticipationCompetiteur (numConcours, numCompetiteur)
 VALUES
-    (2, 120),
-    (2, 121),
-    (2, 122),
-    (2, 123),
-    (2, 124),
-    (2, 125),
-    (2, 140),
-    (2, 141),
-    (2, 142),
-    (2, 143),
-    (2, 144),
-    (2, 145),
-    (2, 170),
-    (2, 171),
-    (2, 172),
-    (2, 173),
-    (2, 174),
-    (2, 175),
-    (2, 190),
-    (2, 191),
-    (2, 192),
-    (2, 193),
-    (2, 194),
-    (2, 195),
-    (2, 210),
-    (2, 211),
-    (2, 212),
-    (2, 213),
-    (2, 214),
-    (2, 215),
-    (2, 230),
-    (2, 231),
-    (2, 232),
-    (2, 233),
-    (2, 234),
-    (2, 235),
-    (2, 250),
-    (2, 251),
-    (2, 252),
-    (2, 253),
-    (2, 254),
-    (2, 255),
-    (2, 270),
-    (2, 271),
-    (2, 272),
-    (2, 273),
-    (2, 274),
-    (2, 275),
+    (1, 120),
+    (1, 121),
+    (1, 122),
+    (1, 123),
+    (1, 124),
+    (1, 125),
+    (1, 140),
+    (1, 141),
+    (1, 142),
+    (1, 143),
+    (1, 144),
+    (1, 145),
+    (1, 170),
+    (1, 171),
+    (1, 172),
+    (1, 173),
+    (1, 174),
+    (1, 175),
+    (1, 190),
+    (1, 191),
+    (1, 192),
+    (1, 193),
+    (1, 194),
+    (1, 195),
+    (1, 210),
+    (1, 211),
+    (1, 212),
+    (1, 213),
+    (1, 214),
+    (1, 215),
+    (1, 230),
+    (1, 231),
+    (1, 232),
+    (1, 233),
+    (1, 234),
+    (1, 235),
+    (1, 250),
+    (1, 251),
+    (1, 252),
+    (1, 253),
+    (1, 254),
+    (1, 255),
+    (1, 270),
+    (1, 271),
+    (1, 272),
+    (1, 273),
+    (1, 274),
+    (1, 275),
     (5, 126),
     (5, 127),
     (5, 128),
@@ -539,35 +539,35 @@ VALUES
     (5, 278),
     (5, 279),
     (5, 280);
-    
+
 
 -- Insert data into ParticipationEvaluateur table
 INSERT INTO ParticipationEvaluateur (numConcours, numEvaluateur)
 VALUES
-    (2, 109),
-    (2, 110),
-    (2, 111),
-    (2, 133),
-    (2, 134),
-    (2, 135),
-    (2, 160),
-    (2, 161),
-    (2, 162),
-    (2, 180),
-    (2, 181),
-    (2, 182),
-    (2, 200),
-    (2, 201),
-    (2, 202),
-    (2, 221),
-    (2, 222),
-    (2, 223),
-    (2, 241),
-    (2, 242),
-    (2, 243),
-    (2, 261),
-    (2, 262),
-    (2, 263),
+    (1, 109),
+    (1, 110),
+    (1, 111),
+    (1, 133),
+    (1, 134),
+    (1, 135),
+    (1, 160),
+    (1, 161),
+    (1, 162),
+    (1, 180),
+    (1, 181),
+    (1, 182),
+    (1, 200),
+    (1, 201),
+    (1, 202),
+    (1, 221),
+    (1, 222),
+    (1, 223),
+    (1, 241),
+    (1, 242),
+    (1, 243),
+    (1, 261),
+    (1, 262),
+    (1, 263),
     (5, 109),
     (5, 110),
     (5, 111),
@@ -596,13 +596,13 @@ VALUES
 -- Insert data into ParticipationClub table
 INSERT INTO ParticipationClub (numConcours, numClub)
 VALUES
-    (2, 1),
-    (2, 2),
-    (2, 3),
-    (2, 4),
-    (2, 5),
-    (2, 6),
-    (2, 7),
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
     (2, 8),
     (5, 1),
     (5, 2),
@@ -612,7 +612,7 @@ VALUES
     (5, 6),
     (5, 7),
     (5, 8);
-    
+
 
 -- Insert data into Evaluation table
 INSERT INTO Evaluation (numEvaluation, dateEvaluation, note, commentaire, numEvaluateur, numDessin)
@@ -626,12 +626,12 @@ VALUES
     (5, '2023-07-09',12,'cool',221,3),
     (6, '2023-07-10',9,'euhhhh',261,3),
 
-    (7, '2023-07-11',4,'Loose',180,4),
+    (7, '2023-07-11',4,'Loose',110,4),
     (8, '2023-07-12',2,'pfff',200,4),
 
-    (9, '2023-07-13',3,'Beurk',242,5),
+    (9, '2023-07-13',3,'Beurk',111,5),
     (10, '2023-07-14',1,'nop',261,5),
-    
+
     (11, '2023-07-15',18,'Very good',263,6),
     (12, '2023-07-16',18,'good art',182,6),
 
@@ -644,10 +644,10 @@ VALUES
     (17,'2023-10-07',15,'nice draw men',262,24),
     (18,'2023-10-09',15,'very cool',243,24),
 
-    (19,'2023-10-10',14,'nice',110,25),
+    (19,'2023-10-10',14,'nice',180,25),
     (20,'2023-10-11',13,'nice cool',161,25),
 
-    (21,'2023-10-13',12,'correct',111,26),
+    (21,'2023-10-13',12,'correct',242,26),
     (22,'2023-10-14',11,'strange idea',135,26),
 
     (23,'2023-10-15',10,'why not',160,27),
@@ -659,5 +659,5 @@ VALUES
     (27,'2023-10-25',19,'For alliance',262,29),
     (28,'2023-11-26',19,'very good bro',242,29);
 
-  
-    
+
+

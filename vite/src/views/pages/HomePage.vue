@@ -13,8 +13,25 @@
                             <small>{{ TimeService.formatTimeLeft($t, currentContest.dateFin) }}</small>
                         </div>
                     </div>
-                    <a class="participate-button" :href="'/contest/' + currentContest.numConcours">{{ $t('see') }}</a>
+                    <a
+                        v-if="currentContest.role == 'None'"
+                        class="participate-button" :href="'/contest/' + currentContest.numConcours"
+                    >
+                        {{ $t('participate') }}
+                    </a>
+                    <a
+                        v-if="currentContest.role != 'None'"
+                        class="participate-button" :href="'/contest/' + currentContest.numConcours"
+                    >
+                        {{ $t('see') }}
+                    </a>
                 </div>
+            </section>
+            <section v-if="currentContest.role == 'Evaluateur' && evaluatorDrawings.length" class="evaluate-section">
+                Vous avez {{ evaluatorDrawings.length }} dessins à évaluer
+                <a class="evaluate-button" :href="'/contest/' + currentContest.numConcours">
+                    <small>{{ $t('see') }}</small>
+                </a>
             </section>
         </div>
         <div class="section-list">
@@ -45,28 +62,48 @@
     import AuthService from '@/services/authService';
     import TimeService from '@/services/timeService';
     import ContestService from "@/services/contestService";
+    import UserService from "@/services/userService";
+    import DrawingService from "@/services/drawingService";
 
     export default {
         data() {
             return {
                 currentContest: {},
-                contestHistory: []
+                contestHistory: [],
+                evaluatorDrawings: []
             };
         },
         async mounted() {
-            await this.fetchData();
             this.isAuthenticated = await AuthService.isAuthenticated();
             if (!this.isAuthenticated) return;
 
             this.isClubPresident = await AuthService.isClubPresident();
             if (this.isClubPresident) return;
 
+            this.userInfos = await AuthService.getSelfInfos();
+            console.log(this.userInfos);
+            await this.fetchData();
+
             this.isAdmin = await AuthService.isAdmin();
         },
         methods: {
             async fetchData() {
                 this.currentContest = await ContestService.getCurrent();
+                this.currentContest['role'] = await UserService.getRoleForContest(
+                    this.userInfos.numUtilisateur,
+                    this.currentContest.numConcours,
+                );
+                console.log(this.userInfos.numUtilisateur);
+                console.log(this.currentContest.role);
+
                 this.contestHistory = await ContestService.getHistory();
+                if (this.currentContest.role == 'Evaluateur') {
+                    this.evaluatorDrawings = await DrawingService.getAllForEvaluatorForContest(
+                        this.userInfos.numUtilisateur,
+                        this.currentContest.numConcours,
+                    );
+                    console.log(this.evaluatorDrawings);
+                }
             }
         }
     };
@@ -104,6 +141,27 @@
         gap: 24px;
         flex-direction: column;
         background-color: white;
+    }
+
+    .evaluate-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .evaluate-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        text-align: center;
+        background-color: $primary-color;
+        color: white;
+        border-radius: 12px;
+        height: 24px;
+        padding: 0 12px;
+        width: auto;
     }
 
     .current-contest-card {
