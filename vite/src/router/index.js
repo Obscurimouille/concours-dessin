@@ -9,6 +9,7 @@ import HomePage from "../views/pages/HomePage.vue";
 import NotFoundPage from "../views/pages/NotFoundPage.vue";
 import UnauthorizedPage from "../views/pages/UnauthorizedPage.vue";
 import ContestPage from "../views/pages/ContestPage.vue";
+import ClubService from "../services/clubService";
 
 const routes = [
     {
@@ -21,7 +22,11 @@ const routes = [
 
             // Check if the user is a club president
             const isClubPresident = await AuthService.isClubPresident();
-            if (isClubPresident) return next("/club/12345");
+            if (isClubPresident) {
+                const userInfos = await AuthService.getSelfInfos();
+                const clubInfos = await ClubService.getByManager(userInfos.numUtilisateur);
+                return next(`/club/${clubInfos.numClub}`);
+            }
 
             // Check if the user is an admin
             const isAdmin = await AuthService.isAdmin();
@@ -38,7 +43,8 @@ const routes = [
         beforeEnter: (to, from, next) => {
             const clubId = to.params.clubId;
             // Check if the club exists
-            ApiService.request(`/dev_club.php?id=${clubId}`).then(() => {
+            ClubService.getById(clubId).then((res) => {
+                console.log(res);
                 next();
             });
         },
@@ -55,7 +61,17 @@ const routes = [
         },
     },
     { path: "/home", component: HomePage },
-    { path: "/admin", component: AdminDashboardPage },
+    {
+        path: "/admin", component: AdminDashboardPage,
+        beforeEnter: async (to, from, next) => {
+            const isAuthenticated = await AuthService.isAuthenticated();
+            if (!isAuthenticated) return next("/");
+
+            const isAdmin = await AuthService.isAdmin();
+            if (!isAdmin) return next("/");
+            return next();
+        }
+    },
     { path: "/:pathMatch(.*)*", redirect: "/notFound" },
     { path: "/notFound", name: "NotFound", component: NotFoundPage },
     { path: "/unauthorized", name: "Unauthorized", component: UnauthorizedPage },

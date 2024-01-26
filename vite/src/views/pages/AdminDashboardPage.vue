@@ -23,6 +23,13 @@
                 <img src="/images/icons/supervisor-account_200.svg"/>
                 <span class="material-icons">{{ $t('manage') }}</span>
             </a>
+
+            <div class="spacer"></div>
+
+            <a class="menu-item logout" href="/logout.php">
+                <img src="/images/icons/logout_300.svg"/>
+                <span class="material-icons">{{ $t('logout') }}</span>
+            </a>
         </nav>
 
         <div class="page-content" v-if="currentHash === 'contest-new'">
@@ -86,10 +93,6 @@
         </div>
     </main>
 </template>
-
-<script setup>
-    import AppHeader from "@/views/components/AppHeader.vue";
-</script>
 
 <script>
     import ApiService from '@/services/apiService';
@@ -161,7 +164,10 @@
             pointer-events: none;
             opacity: 0.5;
         }
+    }
 
+    .spacer {
+        flex: 1;
     }
 
     .page-content {

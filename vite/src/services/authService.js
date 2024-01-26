@@ -24,6 +24,10 @@ const AuthService = {
     async isAdmin() {
         const data = await ApiService.request(`/isAdmin.php`);
         return data.isAdmin;
+    },
+
+    getSelfInfos() {
+        return ApiService.request(`/self.php`);
     }
 
 };
