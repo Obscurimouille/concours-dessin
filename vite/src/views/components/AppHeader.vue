@@ -20,7 +20,6 @@
 </script>
 
 <script>
-    import ApiService from '@/services/apiService';
     import AuthService from '@/services/authService';
 
     export default {

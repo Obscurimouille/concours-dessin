@@ -67,7 +67,7 @@ if (count($clubPresidentData)) {
 /* -------------------------------------------------------------------------- */
 
 $_SESSION['user'] = [
-    'username' => $username,
+    'userId' => $userId,
     'isAdmin' => false,
     'isClubPresident' => false,
 ];

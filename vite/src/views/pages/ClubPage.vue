@@ -3,23 +3,23 @@
     <main>
         <section class="club-section">
             <div class="banner">
-                <h4 class="club-name">{{ club.name }}</h4>
+                <h4 class="club-name">{{ club.nomClub }}</h4>
             </div>
 
             <form class="club-infos-form" type="POST">
                 <div class="form-input-group">
                     <label for="address">{{ $t('address') }}</label>
-                    <input type="text" v-model="club.address" name="address" disabled/>
+                    <input type="text" v-model="club.adresseClub" name="address" disabled/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="city">{{ $t('city') }}</label>
-                    <input type="text" v-model="club.city" name="city" disabled/>
+                    <input type="text" v-model="club.ville" name="city" disabled/>
                 </div>
 
                 <div class="form-input-group">
                     <label for="department">{{ $t('department') }}</label>
-                    <input type="text" v-model="club.department" name="department" disabled/>
+                    <input type="text" v-model="club.departement" name="department" disabled/>
                 </div>
 
                 <div class="form-input-group">
@@ -29,7 +29,7 @@
 
                 <div class="form-input-group">
                     <label for="phone">{{ $t('phone') }}</label>
-                    <input type="phone" v-model="club.phone" name="phone" disabled/>
+                    <input type="phone" v-model="club.numTelephone" name="phone" disabled/>
                 </div>
             </form>
         </section>
@@ -38,15 +38,15 @@
             <div class="section-header">
                 <h4>
                     {{ $t('members') }}
-                    <span class="member-number">({{ club.members.length }})</span>
+                    <span class="member-number">({{ members.length }})</span>
                 </h4>
 
                 <button @click="showModal">{{ $t('addMember') }}</button>
             </div>
 
             <div class="member-list">
-                <div class="member" v-for="(member, index) in club.members" :key="index">
-                    {{ member.firstname + ' ' + member.lastname + ', ' + member.address }}
+                <div class="member" v-for="(member, index) in members" :key="index">
+                    {{ member.nom + ' ' + member.prenom + ', ' + member.dateAdhesion }}
                 </div>
             </div>
         </section>
@@ -92,34 +92,25 @@
 </script>
 
 <script>
-    import ApiService from '@/services/apiService';
+    import ClubService from "@/services/clubService";
 
     export default {
         data() {
             return {
-                club: {
-                    name: '',
-                    address: '',
-                    city: '',
-                    department: '',
-                    region: '',
-                    phone: '',
-                    members: []
-                },
+                club: {},
+                members: [],
                 isModalVisible: false
             }
         },
         components: {
             Modal
         },
-        mounted() {
+        async mounted() {
             const clubId = this.$route.params.clubId;
-
             if (!clubId) this.$router.push({ name: 'NotFound' });
 
-            ApiService.request(`/dev_club.php?id=${clubId}`).then((result) => {
-                this.club = result;
-            });
+            this.club = await ClubService.getById(clubId);
+            this.members = await ClubService.getMembers(clubId);
         },
         methods: {
             showModal() {
