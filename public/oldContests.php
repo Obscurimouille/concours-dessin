@@ -11,7 +11,7 @@ require_once "connect.php";
 
 /* -------------------------------------------------------------------------- */
 
-$query = "SELECT * FROM Concours WHERE etat <> 'EN_COURS' AND etat <> 'PAS_COMMENCE'";
+$query = "SELECT * FROM Concours WHERE etat <> 'EN_COURS' AND etat <> 'PAS_COMMENCE' ORDER BY dateFin DESC";
 $data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);

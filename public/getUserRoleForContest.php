@@ -34,6 +34,7 @@ $query = "SELECT 'Evaluateur' AS TypePersonne
 $data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);
-echo json_encode($data);
+if (count($data) == 0) echo json_encode(['TypePersonne' => 'None']);
+else echo json_encode($data[0]);
 exit;
 ?>
