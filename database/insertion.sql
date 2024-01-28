@@ -613,6 +613,22 @@ VALUES
     (5, 7),
     (5, 8);
 
+INSERT INTO Jury (numDessin, numEvaluateur1, numEvaluateur2)
+VALUES
+    (1, 201, 241),
+    (2, 133, 160),
+    (3, 221, 261),
+    (4, 110, 200),
+    (5, 111, 261),
+    (6, 263, 182),
+    (22, 200, 221),
+    (23, 241, 261),
+    (24, 262, 243),
+    (25, 180, 161),
+    (26, 242, 135),
+    (27, 160, 180),
+    (28, 109, 133),
+    (29, 262, 242);
 
 -- Insert data into Evaluation table
 INSERT INTO Evaluation (numEvaluation, dateEvaluation, note, commentaire, numEvaluateur, numDessin)

@@ -11,12 +11,12 @@
         </div>
 
         <!-- Liste des dessins à évaluer -->
-        <section v-if="userRole=='evaluator'">
+        <section v-if="userRole=='Evaluateur'">
 
         </section>
 
         <!-- Depos dessin -->
-        <section v-if="userRole=='participant'">
+        <section v-if="userRole=='Compétiteur'">
             <div class="section-header">
                 <h5>Déposer un dessin </h5><span>({{ drawings.length }}/{{ nbMaxDrawings }})</span>
             </div>
@@ -32,7 +32,7 @@
         </section>
 
         <!-- Infos générales -->
-        <section v-if="userRole=='president'">
+        <section v-if="userRole=='Président'">
 
         </section>
     </main>
@@ -45,12 +45,15 @@
 <script>
     import TimeService from '@/services/timeService';
     import ContestService from "@/services/contestService";
+    import AuthService from "@/services/authService";
+    import UserService from "@/services/userService";
+import DrawingService from "../../services/drawingService";
 
     export default {
         data() {
             return {
                 contestId: undefined,
-                userRole: 'participant',
+                userRole: 'Compétiteur',
                 drawings: [
                     {
                         commentaire: "Mon dessin",
@@ -67,20 +70,32 @@
                 ],
                 nbMaxDrawings: 3,
                 contest: {},
-                isModalVisible: false
+                isModalVisible: false,
             }
         },
         async mounted() {
             this.contestId = this.$route.params.contestId;
-
             if (!this.contestId) this.$router.push({ name: 'NotFound' });
+
+            this.userInfos = await AuthService.getSelfInfos();
+            this.userRole = await UserService.getRoleForContest(this.userInfos.numUtilisateur, this.contestId);
 
             await this.fetchData();
         },
         methods: {
             async fetchData() {
                 this.contest = await ContestService.getById(this.contestId);
-                console.log(this.contest);
+                if (this.userRole == 'Compétiteur') {
+                    this.drawings = await DrawingService.getByParticipantAndContest(
+                        this.userInfos.numUtilisateur, this.contestId
+                    );
+                }
+                else if (this.userRole == 'Evaluateur') {
+                    this.toEvaluateDrawings = await DrawingService.getAllForEvaluatorAndContest(
+                        this.userInfos.numUtilisateur, this.contestId
+                    );
+                    console.log(this.toEvaluateDrawings);
+                }
             },
             getTooltipContent() {
                 // 'PAS_COMMENCE', 'EN_COURS', 'ATTENTE', 'EVALUE'

@@ -2,7 +2,12 @@ import axios from "axios";
 
 const ApiService = {
 
-    // Function to make an API request and handle errors
+    /**
+     * Make a request to the API
+     * @param {string} endpoint The endpoint to request
+     * @param {string} method The HTTP method to use
+     * @param {object} data The data to send
+     */
     async request(endpoint, method = "get", data = null) {
         try {
             const response = await axios({

@@ -98,10 +98,13 @@
 
                 this.contestHistory = await ContestService.getHistory();
                 if (this.currentContest.role == 'Evaluateur') {
-                    this.evaluatorDrawings = await DrawingService.getAllForEvaluatorForContest(
+                    this.evaluatorDrawings = await DrawingService.getAllForEvaluatorAndContest(
                         this.userInfos.numUtilisateur,
                         this.currentContest.numConcours,
+                        true
                     );
+                    console.log(this.userInfos.numUtilisateur);
+                    console.log(this.currentContest.numConcours);
                     console.log(this.evaluatorDrawings);
                 }
             }
