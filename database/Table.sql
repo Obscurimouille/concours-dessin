@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Jury;
 DROP TABLE IF EXISTS Evaluation;
 DROP TABLE IF EXISTS ParticipationClub;
 DROP TABLE IF EXISTS ParticipationEvaluateur;
@@ -19,7 +20,7 @@ DROP TABLE IF EXISTS Club;
 CREATE TABLE Club(
     numClub         INT NOT NULL ,
     nomClub         VARCHAR(255),
-    
+
     adresseClub     VARCHAR(255),
     numTelephone    VARCHAR(20),
     nombreAdherents INT,
@@ -27,7 +28,7 @@ CREATE TABLE Club(
     departement     VARCHAR(100),
     region          VARCHAR(100),
     PRIMARY KEY (numClub)
-    
+
 );
 
 -- Table Concours
@@ -64,7 +65,7 @@ CREATE TABLE Directeur(
     dateDebut      DATE,
 
     PRIMARY KEY (numDirecteur),
-    
+
     FOREIGN KEY (numDirecteur) REFERENCES Utilisateur (numUtilisateur)
 );
 
@@ -161,3 +162,14 @@ CREATE TABLE Evaluation(
     FOREIGN KEY (numDessin) REFERENCES Dessin (numDessin)
 );
 
+CREATE TABLE Jury
+(
+    numJury        INT AUTO_INCREMENT,
+    numDessin      INT,
+    numEvaluateur1 INT,
+    numEvaluateur2 INT,
+    PRIMARY KEY (numJury, numDessin, numEvaluateur1, numEvaluateur2),
+    FOREIGN KEY (numDessin) REFERENCES Dessin (numDessin),
+    FOREIGN KEY (numEvaluateur1) REFERENCES Evaluateur (numEvaluateur),
+    FOREIGN KEY (numEvaluateur2) REFERENCES Evaluateur (numEvaluateur)
+);
