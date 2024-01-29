@@ -67,5 +67,6 @@
     "noData": "No data",
     "data": "Data",
     "all": "All",
-    "admin": "Admin"
+    "admin": "Admin",
+    "birthDate": "Birth date"
 }
