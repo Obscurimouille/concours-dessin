@@ -14,24 +14,24 @@ VALUES
 -- Insert data into Concours table
 INSERT INTO Concours (numConcours, theme, dateDebut, dateFin, etat)
 VALUES
-    (1, 'Drawing Contest 2024', '2024-01-03', '2024-01-30', 'EN_COURS'),
-    (2, 'Art Show 2023', '2023-07-01', '2023-07-30', 'EVALUE'),
+    (1, 'Drawing Contest 2024', '2024-01-03', '2024-02-05', 'EN_COURS'),
+    (2, 'Art Show 2020', '2020-07-01', '2020-07-30', 'EVALUE'),
     (3, 'Painting Contest 2023', '2023-04-01', '2023-04-20', 'EVALUE'),
     (4, 'Art Show 2023', '2023-01-03', '2023-01-30', 'EVALUE'),
-    (5, 'Drawing Contest 2023', '2023-10-01', '2023-10-30', 'ATTENTE'),
-    (6, 'Art Show 2022', '2022-07-01', '2022-07-15', 'EVALUE'),
+    (5, 'Drawing Contest 2023', '2023-09-01', '2023-09-15', 'EVALUE'),
+    (6, 'Art Show 2022', '2023-10-01', '2023-10-30', 'ATTENTE'),
     (7, 'Painting Contest 2022', '2022-04-01', '2022-04-15', 'EVALUE'),
-    (8, 'Art Show 2022', '2022-02-01', '2022-02-15', 'EVALUE'),
+    (8, 'Art Show 2021', '2021-02-01', '2021-02-15', 'EVALUE'),
     (9, 'Drawing Contest 2022', '2022-10-01', '2022-10-15', 'EVALUE'),
-    (10, 'Spring Art together 2024','2024-05-02','2024-05-30','PAS_COMMENCE');
+    (10, 'Spring Art together 2020','2020-05-02','2020-05-30','PAS_COMMENCE');
 
 
 
 -- Insert data into Utilisateur table (common for Competiteur, Evaluateur, President, Administrateur)
 INSERT INTO Utilisateur (numUtilisateur, nom, prenom, adresseUtilisateur, login, motDePasse, dateAdhesion, numClub, dateDeNaissance)
 VALUES
-    (100, 'Chuck', 'Norris','1 rue Jesus','chuck_norris','dieu111','2020-01-02',1,'1980-02-01'),
-    (101, 'Wick', 'John', '789 Pine St', 'wick_john', 'password223', '2022-01-03', 1, '1990-05-15'),
+    (100, 'Chuck', 'Norris','1 rue Jesus','admin','admin123','2020-01-02',1,'1980-02-01'),
+    (101, 'Wick', 'John', '789 Pine St', 'directeur_john', 'password223', '2022-01-03', 1, '1990-05-15'),
     (109, 'Jane', 'Smith', '987 Elm St', 'jane_smith', 'pass456', '2022-02-01', 1, '1985-08-20'),
     (110, 'Bob', 'Jones', '123 Oak St', 'bob_jones', 'pass789', '2022-03-01', 1, '1995-01-25'),
     (111, 'Mary', 'Johnson', '456 Maple St', 'mary_johnson', 'pass101112', '2022-04-01', 1, '1992-12-10'),
@@ -44,7 +44,7 @@ VALUES
     (118, 'David', 'Wilson', '654 Birch St', 'david_wilson', 'pass313233', '2022-11-01', 1, '1999-11-05'),
     (119, 'Elizabeth', 'Martinez', '321 Cedar St', 'elizabeth_martinez', 'pass343536', '2022-12-01', 1, '2000-04-30'),
     (120, 'Richard', 'Anderson', '789 Pine St', 'richard_anderson', 'pass373839', '2023-01-01', 1, '2001-01-15'),
-    (121, 'Jennifer', 'Taylor', '987 Elm St', 'jennifer_taylor', 'pass404142', '2023-02-01', 1, '2002-08-20'),
+    (121, 'Jennifer', 'Taylor', '987 Elm St', 'competiteur_taylor', 'pass404142', '2023-02-01', 1, '2002-08-20'),
     (122, 'Charles', 'Thomas', '123 Oak St', 'charles_thomas', 'pass434445', '2023-03-01', 1, '2003-05-25'),
     (123, 'Maria', 'Hernandez', '456 Maple St', 'maria_hernandez', 'pass464748', '2023-04-01', 1, '2004-12-10'),
     (124, 'Joseph', 'Moore', '654 Birch St', 'joseph_moore', 'pass495051', '2023-05-01', 1, '2005-03-05'),
@@ -174,8 +174,8 @@ VALUES
     (239, 'Roussel', 'Ines', '22 Rue du Chateau', 'roussel_ines', 'pass123', '2022-04-01', 6, '1995-06-10'),
     (240, 'Lemoine', 'Tom', '5 Rue de Dinan', 'lemoine_tom', 'pass456', '2022-04-02', 6, '1990-08-15'),
 
-    (107,'Starlord','Peter','12 Rue des etoiles','starlord_peter','pass160','2022-04-01',7,'1993-06-11'),
-    (241, 'Giraud', 'Hugue', '15 Rue de la Liberté', 'giraud_hugue', 'pass123', '2022-04-01', 7, '1995-06-10'),
+    (107, 'Starlord','Peter','12 Rue des etoiles','starlord_peter','pass160','2022-04-01',7,'1993-06-11'),
+    (241, 'Giraudeau', 'Hugo', '15 Rue de la Liberté', 'evaluateur_hugo', 'pass123', '2022-04-01', 7, '1995-06-10'),
     (242, 'Leclerc', 'Charles', '28 Rue Kerguelen', 'leclerc_charles', 'pass456', '2022-04-02', 7, '1990-08-15'),
     (243, 'Roux', 'Miam', '7 Rue du Port', 'roux_miam', 'pass789', '2022-04-03', 7, '1987-12-20'),
     (244, 'Moreau', 'Lise', '32 Rue de Siam', 'moreau_lise', 'passabc', '2022-04-04', 7, '1985-04-25'),

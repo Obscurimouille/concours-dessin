@@ -22,6 +22,14 @@ const DrawingService = {
     },
 
     /**
+     * Get all drawings and evaluations for a contest
+     * @param {number} contestId The id of the contest
+     */
+    getDrawingsAndEvaluationForContest(contestId) {
+        return ApiService.request(`/getDrawingsAndEvaluationForContest.php?id_contest=${contestId}`);
+    },
+
+    /**
      * Post an evaluation for a drawing
      * @param {number} evaluatorId The id of the evaluator
      * @param {number} drawingId The id of the drawing

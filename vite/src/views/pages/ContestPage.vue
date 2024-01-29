@@ -10,10 +10,33 @@
             </div>
         </div>
 
-        <!-- Liste des dessins à évaluer -->
-        <section v-if="userRole=='Evaluateur'">
+        <section v-if="contest.etat === 'PAS_COMMENCE'">
+            <p>{{ $t('noStartedYet') }}</p>
+        </section>
+
+        <section v-if="userRole=='Président' || contest.etat === 'EVALUE'">
             <div class="section-header">
-                <h5>Non évalués</h5>
+                <h5>{{ $t('results') }} </h5>
+            </div>
+
+            <div class="drawing-list" v-if="results.length">
+                <div class="result-drawing" v-for="(drawing, index) in results" :key="index">
+                    <p>{{ (index+1) + '. ' + drawing.prenom + ' ' + drawing.nom + ' - ' + drawing.commentaire }}</p>
+                    <p>{{ average(drawing.evaluations) }}</p>
+                </div>
+            </div>
+
+            <p v-else>{{ $t('noData') }}</p>
+        </section>
+
+        <section v-if="contest.etat === 'ATTENTE'">
+            <p>{{ $t('waitingForEvaluation') }}</p>
+        </section>
+
+        <!-- Liste des dessins à évaluer -->
+        <section v-if="contest.etat === 'EN_COURS' && userRole=='Evaluateur'">
+            <div class="section-header">
+                <h5>{{ $t('pendingEvaluation') }}</h5>
             </div>
 
             <div class="drawing-list" v-if="toEvaluateDrawings.length">
@@ -23,37 +46,32 @@
                     <input type="text" name="evaluatorId" :value="userInfos.numUtilisateur" hidden/>
                     <input type="text" name="drawingId" :value="drawing.numDessin" hidden/>
 
-                    <label for="comment">Commentaire</label>
+                    <label for="comment">{{ $t('comment') }}</label>
                     <input type="text" class="comment-input" v-model="drawing.comment" name="comment"/>
 
-                    <label for="mark">Note (/20)</label>
+                    <label for="mark">{{ $t('mark') }} (/20)</label>
                     <input type="number" class="mark-input" v-model="drawing.mark" name="mark" min="0" max="20" required/>
 
                     <button @click="postEvaluation(drawing.numDessin, drawing.mark, drawing.comment)">Envoyer</button>
                 </div>
             </div>
-            <p v-else>Aucun dessin à évaluer</p>
+            <p v-else>{{ $t('noDrawingsToEvaluate') }}</p>
         </section>
 
         <!-- Depos dessin -->
         <section v-if="userRole=='Compétiteur'">
             <div class="section-header">
-                <h5>Déposer un dessin </h5><span>({{ drawings.length }}/{{ nbMaxDrawings }})</span>
+                <h5>{{ $t('submitADrawing') }} </h5><span>({{ drawings.length }}/{{ nbMaxDrawings }})</span>
             </div>
 
             <div class="drawing-list" v-if="drawings">
                 <div class="drawing" v-for="(drawing, index) in drawings" :key="index">
                     <p>{{ (index+1) + '. ' + drawing.commentaire }}</p>
-                    <p>Déposé le {{ drawing.dateRemise }}</p>
+                    <p>{{ $t('submitedOn') }} {{ drawing.dateRemise }}</p>
                 </div>
             </div>
 
             <button class="upload-drawing-button" :disabled="drawings.length == nbMaxDrawings">Déposer</button>
-        </section>
-
-        <!-- Infos générales -->
-        <section v-if="userRole=='Président'">
-
         </section>
     </main>
 </template>
@@ -79,6 +97,7 @@
                 nbMaxDrawings: 3,
                 contest: {},
                 isModalVisible: false,
+                results: []
             }
         },
         async mounted() {
@@ -91,18 +110,27 @@
             await this.fetchData();
         },
         methods: {
+
             async fetchData() {
                 this.contest = await ContestService.getById(this.contestId);
+                if (this.contest.etat == 'EVALUE') {
+                    this.results = await DrawingService.getDrawingsAndEvaluationForContest(this.contestId);
+                    this.results = [...this.results, ...this.results]
+                    return;
+                }
+
                 if (this.userRole == 'Compétiteur') {
                     this.drawings = await DrawingService.getByParticipantAndContest(
                         this.userInfos.numUtilisateur, this.contestId
                     );
+                    return;
                 }
-                else if (this.userRole == 'Evaluateur') {
+
+                if (this.userRole == 'Evaluateur') {
                     this.toEvaluateDrawings = await DrawingService.getAllForEvaluatorAndContest(
                         this.userInfos.numUtilisateur, this.contestId
                     );
-                    console.log(this.toEvaluateDrawings);
+                    return;
                 }
             },
             getTooltipContent() {
@@ -119,6 +147,11 @@
                     this.userInfos.numUtilisateur, drawingId, mark, comment
                 );
                 window.location.reload();
+            },
+            average(evaluations) {
+                let sum = 0;
+                for (const evaluation of evaluations) sum += +evaluation.note;
+                return sum / evaluations.length;
             }
         }
     };
@@ -140,6 +173,7 @@
 
     section {
         min-height: 120px;
+        max-height: 70%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -177,7 +211,7 @@
     .to-evaluate-drawing {
         padding: 20px 24px;
         border-radius: 12px;
-        background-color: rgba(black, 10%);
+        background-color: rgba(black, 5%);
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -193,6 +227,20 @@
         .mark-input {
             flex: 0 0 80px;
         }
+    }
+
+    .result-drawing {
+        min-height: 62px;
+        padding: 20px 24px;
+        border-radius: 12px;
+        background-color: rgba(black, 5%);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        flex-wrap: wrap;
+        gap: 18px;
     }
 
     .upload-drawing-button {

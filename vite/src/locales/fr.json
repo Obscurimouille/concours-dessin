@@ -54,5 +54,15 @@
     "contestPending": "En attente d'évaluation",
     "contestEvaluated": "Evalué",
     "contestClosed": "Terminé",
-    "availableResults": "Résultats disponibles"
+    "availableResults": "Résultats disponibles",
+    "pendingEvaluation": "En attente d'évaluation",
+    "comment": "Commentaire",
+    "mark": "Note",
+    "noDrawingsToEvaluate": "Aucun dessin à évaluer pour le moment",
+    "submitADrawing": "Soumettre un dessin",
+    "submitedOn": "Soumis le",
+    "waitingForEvaluation": "En attente d'évaluation",
+    "noStartedYet": "Pas encore commencé",
+    "results": "Résultats",
+    "noData": "Aucune donnée disponible"
 }
