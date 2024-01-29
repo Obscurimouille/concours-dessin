@@ -8,6 +8,7 @@
         </div>
 
         <div class="menu">
+            <a v-if="isAdmin" class="menu-item" href="/admin">{{ $t('admin') }}</a>
             <language-dropdown></language-dropdown>
             <router-link v-if="!isAuthenticated" class="menu-item" to="/login">{{ $t('login') }}</router-link>
             <a v-else class="menu-item" href="/logout.php">{{ $t('logout') }}</a>

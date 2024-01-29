@@ -60,9 +60,12 @@
     "mark": "Note",
     "noDrawingsToEvaluate": "Aucun dessin à évaluer pour le moment",
     "submitADrawing": "Soumettre un dessin",
-    "submitedOn": "Soumis le",
+    "submittedOn": "Soumis le",
     "waitingForEvaluation": "En attente d'évaluation",
     "noStartedYet": "Pas encore commencé",
     "results": "Résultats",
-    "noData": "Aucune donnée disponible"
+    "noData": "Aucune donnée disponible",
+    "data": "Données",
+    "all": "Tous",
+    "admin": "Administrateur"
 }
