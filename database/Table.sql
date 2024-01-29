@@ -112,7 +112,7 @@ CREATE TABLE President(
 
 -- Table Dessin
 CREATE TABLE Dessin(
-    numDessin      INT PRIMARY KEY,
+    numDessin      INT PRIMARY KEY AUTO_INCREMENT,
     commentaire    VARCHAR(255),
     classement     INT,
     dateRemise     DATE,
@@ -152,12 +152,12 @@ CREATE TABLE ParticipationClub(
 
 -- Table Evaluation
 CREATE TABLE Evaluation(
-    numEvaluation  INT PRIMARY KEY,
     dateEvaluation DATE,
     note           DECIMAL(5, 2),
     commentaire    VARCHAR(255),
     numEvaluateur  INT,
     numDessin      INT,
+    PRIMARY KEY (numEvaluateur, numDessin),
     FOREIGN KEY (numEvaluateur) REFERENCES Evaluateur (numEvaluateur),
     FOREIGN KEY (numDessin) REFERENCES Dessin (numDessin)
 );
