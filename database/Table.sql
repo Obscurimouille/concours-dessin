@@ -45,7 +45,7 @@ CREATE TABLE Concours(
 
 -- Table Utilisateur
 CREATE TABLE Utilisateur(
-    numUtilisateur     INT NOT NULL ,
+    numUtilisateur     INT NOT NULL AUTO_INCREMENT,
     nom                VARCHAR(100),
     prenom             VARCHAR(100),
     adresseUtilisateur VARCHAR(255),

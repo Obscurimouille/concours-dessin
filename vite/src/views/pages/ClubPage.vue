@@ -61,7 +61,9 @@
                 </button>
             </div>
 
-            <form class="add-user-form" type="POST">
+            <form class="add-user-form" method="POST" action="/postUserIntoClub.php">
+                <input type="number" name="clubId" :value="club.numClub" hidden/>
+
                 <div class="form-input-group">
                     <label for="firstname">{{ $t('firstName') }}</label>
                     <input type="text" name="firstname" required/>
@@ -75,6 +77,11 @@
                 <div class="form-input-group">
                     <label for="address">{{ $t('address') }}</label>
                     <input type="text" name="address" required/>
+                </div>
+
+                <div class="form-input-group">
+                    <label for="birthDate">{{ $t('birthDate') }}</label>
+                    <input type="date" name="birthDate" required/>
                 </div>
 
                 <div class="button-list">

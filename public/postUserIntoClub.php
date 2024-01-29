@@ -9,28 +9,26 @@ require_once "connect.php";
 
 // ensureUserAuthenticated();
 
-if ( !isset($_POST['id_club']) || !isset($_POST['nom']) || !isset($_POST['prenom']) || !isset($_POST['adresse']) ||
- !isset($_POST['login']) || !isset($_POST['mdp']) || !isset($_POST['dateAdhesion']) || !isset($_POST['dateNaissance'])){
+if ( !isset($_POST['clubId']) || !isset($_POST['lastname']) || !isset($_POST['firstname']) ||
+ !isset($_POST['address']) || !isset($_POST['birthDate'])){
     invalidRequestParams();
 }
 
 /* -------------------------------------------------------------------------- */
 
-$id_club = $_POST['id_club'];
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$adresse = $_POST['adresse'];
-$login = $_POST['login'];
-$mdp = $_POST['mdp'];
-$dateAdhesion = $_POST['dateAdhesion'];
-$dateNaissance = $_POST['dateNaissance'];
+$id_club = $_POST['clubId'];
+$nom = $_POST['lastname'];
+$prenom = $_POST['firstname'];
+$adresse = $_POST['address'];
+$login = $nom . $prenom;
+$mdp = $nom . $prenom;
+$dateAdhesion = date("Y-m-d");
+$dateNaissance = $_POST['birthDate'];
 
-// ALTER TABLE `utilisateur` CHANGE `numUtilisateur` `numUtilisateur` INT(11) NOT NULL AUTO_INCREMENT;
 $query = "INSERT INTO Utilisateur (nom, prenom, adresseUtilisateur, login, motDePasse, dateAdhesion, numClub, dateDeNaissance)
 VALUES ('$nom', '$prenom', '$adresse', '$login', '$mdp', '$dateAdhesion', $id_club, '$dateNaissance'); ";
 $data = handleDBRequest($connexion, $query);
 
-http_response_code(201);
-echo json_encode($data);
+header('Location: /');
 exit;
 ?>
