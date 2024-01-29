@@ -7,6 +7,11 @@
 
             <h5 class="menu-title">{{ $t('contest') }}</h5>
 
+            <a class="menu-item" href="/home">
+                <img src="/images/icons/apps_300.svg"/>
+                <span class="material-icons">{{ $t('all') }}</span>
+            </a>
+
             <a class="menu-item" href="#contest-new">
                 <img src="/images/icons/add-circle_300.svg"/>
                 <span class="material-icons">{{ $t('new') }}</span>
@@ -85,11 +90,6 @@
 
         <div class="page-content" v-else>
             <h3 class="page-title">Welcome to the Dashboard</h3>
-            <ul>
-                <li>
-                    <a href="#contest-new">New Contest</a>
-                </li>
-            </ul>
         </div>
     </main>
 </template>

@@ -60,9 +60,12 @@
     "mark": "Mark",
     "noDrawingsToEvaluate": "No drawings to evaluate for the moment",
     "submitADrawing": "Submit a drawing",
-    "submitedOn": "Submited on",
+    "submittedOn": "Submited on",
     "waitingForEvaluation": "Waiting for evaluation",
     "noStartedYet": "No started yet",
     "results": "Results",
-    "noData": "No data"
+    "noData": "No data",
+    "data": "Data",
+    "all": "All",
+    "admin": "Admin"
 }

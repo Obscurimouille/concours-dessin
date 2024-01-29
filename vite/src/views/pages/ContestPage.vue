@@ -14,9 +14,9 @@
             <p>{{ $t('noStartedYet') }}</p>
         </section>
 
-        <section v-if="userRole=='Président' || contest.etat === 'EVALUE'">
+        <section v-if="isAdmin || userRole=='Président' || contest.etat === 'EVALUE'">
             <div class="section-header">
-                <h5>{{ $t('results') }} </h5>
+                <h5>{{ $t(isAdmin ? 'data' : 'results') }} </h5>
             </div>
 
             <div class="drawing-list" v-if="results.length">
@@ -67,7 +67,7 @@
             <div class="drawing-list" v-if="drawings">
                 <div class="drawing" v-for="(drawing, index) in drawings" :key="index">
                     <p>{{ (index+1) + '. ' + drawing.commentaire }}</p>
-                    <p>{{ $t('submitedOn') }} {{ drawing.dateRemise }}</p>
+                    <p>{{ $t('submittedOn') }} {{ drawing.dateRemise }}</p>
                 </div>
             </div>
 
@@ -97,12 +97,15 @@
                 nbMaxDrawings: 3,
                 contest: {},
                 isModalVisible: false,
-                results: []
+                results: [],
+                isAdmin: false,
             }
         },
         async mounted() {
             this.contestId = this.$route.params.contestId;
             if (!this.contestId) this.$router.push({ name: 'NotFound' });
+
+            this.isAdmin = await AuthService.isAdmin();
 
             this.userInfos = await AuthService.getSelfInfos();
             this.userRole = await UserService.getRoleForContest(this.userInfos.numUtilisateur, this.contestId);
