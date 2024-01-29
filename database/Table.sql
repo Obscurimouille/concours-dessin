@@ -168,7 +168,7 @@ CREATE TABLE Jury
     numDessin      INT,
     numEvaluateur1 INT,
     numEvaluateur2 INT,
-    PRIMARY KEY (numJury, numDessin, numEvaluateur1, numEvaluateur2),
+    PRIMARY KEY (numJury),
     FOREIGN KEY (numDessin) REFERENCES Dessin (numDessin),
     FOREIGN KEY (numEvaluateur1) REFERENCES Evaluateur (numEvaluateur),
     FOREIGN KEY (numEvaluateur2) REFERENCES Evaluateur (numEvaluateur)
