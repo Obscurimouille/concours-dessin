@@ -54,5 +54,15 @@
     "contestPending": "Pending results",
     "contestEvaluated": "Evaluated",
     "contestClosed": "Closed",
-    "availableResults": "Available results"
+    "availableResults": "Available results",
+    "pendingEvaluation": "Pending evaluation",
+    "comment": "Comment",
+    "mark": "Mark",
+    "noDrawingsToEvaluate": "No drawings to evaluate for the moment",
+    "submitADrawing": "Submit a drawing",
+    "submitedOn": "Submited on",
+    "waitingForEvaluation": "Waiting for evaluation",
+    "noStartedYet": "No started yet",
+    "results": "Results",
+    "noData": "No data"
 }
