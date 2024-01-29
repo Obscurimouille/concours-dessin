@@ -12,7 +12,27 @@
 
         <!-- Liste des dessins à évaluer -->
         <section v-if="userRole=='Evaluateur'">
+            <div class="section-header">
+                <h5>Non évalués</h5>
+            </div>
 
+            <div class="drawing-list" v-if="toEvaluateDrawings.length">
+                <div class="to-evaluate-drawing" v-for="(drawing, index) in toEvaluateDrawings" :key="index">
+                    <p>{{ (index+1) + '. ' + drawing.commentaire }}</p>
+
+                    <input type="text" name="evaluatorId" :value="userInfos.numUtilisateur" hidden/>
+                    <input type="text" name="drawingId" :value="drawing.numDessin" hidden/>
+
+                    <label for="comment">Commentaire</label>
+                    <input type="text" class="comment-input" v-model="drawing.comment" name="comment"/>
+
+                    <label for="mark">Note (/20)</label>
+                    <input type="number" class="mark-input" v-model="drawing.mark" name="mark" min="0" max="20" required/>
+
+                    <button @click="postEvaluation(drawing.numDessin, drawing.mark, drawing.comment)">Envoyer</button>
+                </div>
+            </div>
+            <p v-else>Aucun dessin à évaluer</p>
         </section>
 
         <!-- Depos dessin -->
@@ -21,7 +41,7 @@
                 <h5>Déposer un dessin </h5><span>({{ drawings.length }}/{{ nbMaxDrawings }})</span>
             </div>
 
-            <div class="drawing-list">
+            <div class="drawing-list" v-if="drawings">
                 <div class="drawing" v-for="(drawing, index) in drawings" :key="index">
                     <p>{{ (index+1) + '. ' + drawing.commentaire }}</p>
                     <p>Déposé le {{ drawing.dateRemise }}</p>
@@ -47,27 +67,15 @@
     import ContestService from "@/services/contestService";
     import AuthService from "@/services/authService";
     import UserService from "@/services/userService";
-import DrawingService from "../../services/drawingService";
+    import DrawingService from "@/services/drawingService";
 
     export default {
         data() {
             return {
                 contestId: undefined,
-                userRole: 'Compétiteur',
-                drawings: [
-                    {
-                        commentaire: "Mon dessin",
-                        dateRemise: "2021-06-01",
-                    },
-                    {
-                        commentaire: "Plus dans unstyle croustillant",
-                        dateRemise: "2021-06-02",
-                    },
-                    {
-                        commentaire: "T'as les croustis?",
-                        dateRemise: "2021-06-04",
-                    }
-                ],
+                userRole: '',
+                drawings: [],
+                toEvaluateDrawings: [],
                 nbMaxDrawings: 3,
                 contest: {},
                 isModalVisible: false,
@@ -105,6 +113,12 @@ import DrawingService from "../../services/drawingService";
                     case 'ATTENTE': return this.$t('contestPending');
                     case 'EVALUE': return this.$t('contestClosed');
                 }
+            },
+            async postEvaluation(drawingId, mark, comment = '') {
+                const res = await DrawingService.postEvaluation(
+                    this.userInfos.numUtilisateur, drawingId, mark, comment
+                );
+                window.location.reload();
             }
         }
     };
@@ -125,7 +139,7 @@ import DrawingService from "../../services/drawingService";
     }
 
     section {
-        min-height: 200px;
+        min-height: 120px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -136,6 +150,10 @@ import DrawingService from "../../services/drawingService";
         padding: 28px 36px 32px 36px;
         gap: 24px;
         background-color: white;
+
+        @media (max-width: $view-xl) {
+            margin: 0 5%;
+        }
     }
 
     .drawing-list {
@@ -154,6 +172,27 @@ import DrawingService from "../../services/drawingService";
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    .to-evaluate-drawing {
+        padding: 20px 24px;
+        border-radius: 12px;
+        background-color: rgba(black, 10%);
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        overflow: hidden;
+        flex-wrap: wrap;
+        gap: 18px;
+
+        .comment-input {
+            flex: 1 0 25%;
+        }
+
+        .mark-input {
+            flex: 0 0 80px;
+        }
     }
 
     .upload-drawing-button {
@@ -196,6 +235,10 @@ import DrawingService from "../../services/drawingService";
         @extend %topography-pattern;
         color: white;
 
+        @media (max-width: $view-xl) {
+            padding: 0 5%;
+        }
+
         &.disabled {
             background-color: rgba(black, 50%);
         }
@@ -210,6 +253,11 @@ import DrawingService from "../../services/drawingService";
             flex-direction: row;
             justify-content: flex-end;
             align-items: center;
+
+            @media (max-width: $view-xl) {
+                left: 5%;
+                width: 90%;
+            }
         }
 
         .contest-theme {

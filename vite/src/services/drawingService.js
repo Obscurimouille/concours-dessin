@@ -19,6 +19,22 @@ const DrawingService = {
      */
     getByParticipantAndContest(participantId, contestId) {
         return ApiService.request(`/getDrawingFromUserForContest.php?id_user=${participantId}&id_contest=${contestId}`);
+    },
+
+    /**
+     * Post an evaluation for a drawing
+     * @param {number} evaluatorId The id of the evaluator
+     * @param {number} drawingId The id of the drawing
+     * @param {number} mark The mark given to the drawing
+     * @param {string} comment The comment given to the drawing
+     */
+    postEvaluation(evaluatorId, drawingId, mark, comment = '') {
+        return ApiService.request(`/postEvaluation.php`, "POST", {
+            evaluatorId,
+            drawingId,
+            mark,
+            comment,
+        });
     }
 };
 

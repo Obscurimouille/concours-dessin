@@ -7,7 +7,7 @@ Président (<u>numPresident*</u>, <u>numConcours*</u>, dateDebut, prime)
 
 Evaluateur (<u>numEvaluateur*</u>, specialite)  
 
-Evaluation(<u>numEvaluateur1*</u>, <u>numEvaluateur2*</u>, numDessin*, dateEvaluation, note, commentaire )
+Evaluation(<u>numEvaluateur*</u>, <u>numDessin*</u>, dateEvaluation, note, commentaire )
 
 Compétiteur (<u>numCompetiteur*</u>, datePremParticipation)
 
@@ -27,3 +27,4 @@ ParticipationCompétiteur(<u>numCompetiteur*</u>, <u>numConcours*</u>)
 
 ParticipationEvaluateur(<u>numCompetiteur*</u>, <u>numEvaluateur*</u>)
 
+Jury(<u>numJury</u>, numDessin*, numEvaluateur1*, numEvaluateur2*)
