@@ -17,19 +17,19 @@ $id_user = $_GET['id_user'];
 $id_concour = $_GET['id_contest'];
 
 $query = "SELECT 'Evaluateur' AS TypePersonne
-            FROM participationevaluateur
+            FROM ParticipationEvaluateur
             WHERE numEvaluateur = $id_user AND numConcours = $id_concour
 
             UNION
 
             SELECT 'Compétiteur' AS TypePersonne
-            FROM participationcompetiteur
+            FROM ParticipationCompetiteur
             WHERE  numCompetiteur = $id_user AND numConcours = $id_concour
 
             UNION
 
             SELECT 'Président' AS TypePersonne
-            FROM president
+            FROM President
             WHERE  numPresident = $id_user AND numConcours = $id_concour";
 $data = handleDBSelectRequest($connexion, $query);
 

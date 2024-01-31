@@ -1,4 +1,5 @@
 .idea
+.note
 
 src/assets/css/
 httpd.conf

@@ -18,7 +18,7 @@ if (!isset($_GET['id_user']) || !isset($_GET['id_contest'])) invalidRequestParam
 $id_user = $_GET['id_user'];
 $id_concour = $_GET['id_contest'];
 
-$query = "SELECT * FROM dessin WHERE numCompetiteur = $id_user AND numConcours = $id_concour";
+$query = "SELECT * FROM Dessin WHERE numCompetiteur = $id_user AND numConcours = $id_concour";
 $data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);
