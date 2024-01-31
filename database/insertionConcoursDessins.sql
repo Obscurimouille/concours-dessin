@@ -54,9 +54,9 @@ VALUES
     (128, 'Christopher', 'White', '123 Oak St', 'christopher_white', 'pass616263', '2023-09-01', 1, '2009-07-25'),
     (129, 'Dorothy', 'Lopez', '456 Maple St', 'dorothy_lopez', 'pass646566', '2023-10-01', 1, '2010-10-10'),
     (130, 'Daniel', 'Lee', '654 Birch St', 'daniel_lee', 'pass676869', '2023-11-01', 1, '2011-11-05'),
-    (131, 'Karen', 'Gonzalez', '321 Cedar St', 'karen_gonzalez', 'pass707172', '2023-04-12',1,'2000-22-04'),
+    (131, 'Karen', 'Gonzalez', '321 Cedar St', 'karen_gonzalez', 'pass707172', '2023-04-12',1,'2000-04-22'),
 
-    (102, 'Parker', 'Peter', '789 Pine St', 'Parker_Peter', 'pass737475', '2023-05-12', 2, '1995-02-30'),
+    (102, 'Parker', 'Peter', '789 Pine St', 'Parker_Peter', 'pass737475', '2023-05-12', 2, '1995-02-28'),
     (133, 'Matthew', 'Clark', '987 Elm St', 'matthew_clark', 'pass767778', '2023-06-12', 2, '2013-03-15'),
     (134, 'Nancy', 'Lewis', '123 Oak St', 'nancy_lewis', 'pass798081', '2023-07-12', 2, '2014-06-30'),
     (135, 'Anthony', 'Robinson', '456 Maple St', 'anthony_robinson', 'pass828384', '2023-08-12', 2, '2015-09-15'),

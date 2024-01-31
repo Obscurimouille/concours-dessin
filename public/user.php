@@ -12,7 +12,7 @@ require_once "connect.php";
 /* -------------------------------------------------------------------------- */
 
 if (isset($_GET['id'])){
-    $query = "SELECT * FROM `utilisateur` WHERE `numUtilisateur` = " . $_GET['id'];
+    $query = "SELECT * FROM `Utilisateur` WHERE `numUtilisateur` = " . $_GET['id'];
     $data = handleDBSelectRequest($connexion, $query);
 
     http_response_code(200);
@@ -20,7 +20,7 @@ if (isset($_GET['id'])){
     exit;
 }
 
-$query = "SELECT * FROM `utilisateur`";
+$query = "SELECT * FROM `Utilisateur`";
 $data = handleDBSelectRequest($connexion, $query);
 
 http_response_code(200);

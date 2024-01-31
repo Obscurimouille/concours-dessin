@@ -31,7 +31,7 @@ if (isset($_GET['managerId'])) {
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM club where numClub = $id";
+    $query = "SELECT * FROM Club where numClub = $id";
     $data = handleDBSelectRequest($connexion, $query);
 
     if (empty($data)){

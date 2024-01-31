@@ -67,5 +67,6 @@
     "noData": "Aucune donnée disponible",
     "data": "Données",
     "all": "Tous",
-    "admin": "Administrateur"
+    "admin": "Administrateur",
+    "birthDate": "Date de naissance"
 }

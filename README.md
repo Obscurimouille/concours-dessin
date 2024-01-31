@@ -3,6 +3,17 @@
 ## Description
 Projet de concours de dessins en ligne, réalisé dans le cadre du cours de Base de données relationnelles et application WEB.
 
+# 💻 Accés au site
+
+Le site est accessible à l'adresse suivante : [http://40.66.54.11:1956/](http://40.66.54.11:1956/)
+
+### Identifiants
+
+- **Administrateur** : `admin` / `admin123`
+- **Directeur de club** : `directeur_john` / `password223`
+- **Competiteur** : `competiteur_taylor` / `pass404142`
+- **Evaluateur** : `evaluateur_hugo` / `pass123`
+
 # 🚀 Lancement
 
 ## Prérequis

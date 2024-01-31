@@ -21,7 +21,7 @@ $date_fin = $_POST['date_fin'];
 $etat = $_POST['etat'];
 
 // ALTER TABLE `concours` CHANGE `numConcours` `numConcours` INT(11) NOT NULL AUTO_INCREMENT;
-$query = "INSERT INTO concours (theme, dateDebut, dateFin, etat)
+$query = "INSERT INTO Concours (theme, dateDebut, dateFin, etat)
 VALUES ('$theme', '$date_debut', '$date_fin', '$etat'); ";
 $data = handleDBRequest($connexion, $query);
 
